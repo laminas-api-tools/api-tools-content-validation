@@ -1,30 +1,32 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\ContentValidation;
+namespace Laminas\ApiTools\ContentValidation;
 
-use Zend\EventManager\EventManager;
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
-use Zend\EventManager\ListenerAggregateTrait;
-use Zend\Http\Request as HttpRequest;
-use Zend\Http\Response;
-use Zend\InputFilter\CollectionInputFilter;
-use Zend\InputFilter\Exception\InvalidArgumentException as InputFilterInvalidArgumentException;
-use Zend\InputFilter\InputFilterInterface;
-use Zend\InputFilter\UnknownInputsCapableInterface;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch as V2RouteMatch;
-use Zend\Router\RouteMatch;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Stdlib\ArrayUtils;
-use ZF\ApiProblem\ApiProblem;
-use ZF\ApiProblem\ApiProblemResponse;
-use ZF\ContentNegotiation\ParameterDataContainer;
+use Laminas\ApiTools\ApiProblem\ApiProblem;
+use Laminas\ApiTools\ApiProblem\ApiProblemResponse;
+use Laminas\ApiTools\ContentNegotiation\ParameterDataContainer;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\EventManagerAwareInterface;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\ListenerAggregateInterface;
+use Laminas\EventManager\ListenerAggregateTrait;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Http\Response;
+use Laminas\InputFilter\CollectionInputFilter;
+use Laminas\InputFilter\Exception\InvalidArgumentException as InputFilterInvalidArgumentException;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\InputFilter\UnknownInputsCapableInterface;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
+use Laminas\Router\RouteMatch;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\Stdlib\ArrayUtils;
 
 class ContentValidationListener implements ListenerAggregateInterface, EventManagerAwareInterface
 {
@@ -143,7 +145,7 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
      *
      * If an input filter is associated with the matched controller service,
      * attempt to validate the incoming request, and inject the event with the
-     * input filter, as the "ZF\ContentValidation\InputFilter" parameter.
+     * input filter, as the "Laminas\ApiTools\ContentValidation\InputFilter" parameter.
      *
      * Uses the ContentNegotiation ParameterDataContainer to retrieve parameters
      * to validate, and returns an ApiProblemResponse when validation fails.
@@ -188,12 +190,12 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
             );
         }
 
-        $dataContainer = $e->getParam('ZFContentNegotiationParameterData', false);
+        $dataContainer = $e->getParam('LaminasContentNegotiationParameterData', false);
         if (! $dataContainer instanceof ParameterDataContainer) {
             return new ApiProblemResponse(
                 new ApiProblem(
                     500,
-                    'ZF\\ContentNegotiation module is not initialized; cannot validate request'
+                    'Laminas\\ApiTools\\ContentNegotiation module is not initialized; cannot validate request'
                 )
             );
         }
@@ -223,7 +225,7 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
             $inputFilter = $collectionInputFilter;
         }
 
-        $e->setParam('ZF\ContentValidation\InputFilter', $inputFilter);
+        $e->setParam('Laminas\ApiTools\ContentValidation\InputFilter', $inputFilter);
 
         $event = clone $e;
         $event->setName(self::EVENT_BEFORE_VALIDATE);
