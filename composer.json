@@ -1,24 +1,25 @@
 {
-    "name": "zfcampus/zf-content-validation",
-    "description": "ZF2 Module providing incoming content validation",
-    "type": "library",
+    "name": "laminas-api-tools/api-tools-content-validation",
+    "description": "Laminas Module providing incoming content validation",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
-        "zend",
+        "laminas",
+        "api-tools",
         "module",
         "validation"
     ],
-    "homepage": "http://apigility.org/",
+    "homepage": "https://api-tools.getlaminas.org",
     "support": {
-        "email": "apigility-users@zend.com",
-        "irc": "irc://irc.freenode.net/apigility",
-        "source": "https://github.com/zfcampus/zf-content-validation",
-        "issues": "https://github.com/zfcampus/zf-content-validation/issues"
+        "docs": "https://api-tools.getlaminas.org/documentation",
+        "issues": "https://github.com/laminas-api-tools/api-tools-content-validation/issues",
+        "source": "https://github.com/laminas-api-tools/api-tools-content-validation",
+        "rss": "https://github.com/laminas-api-tools/api-tools-content-validation/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "repositories": [
-        { "type": "composer", "url": "https://packages.zendframework.com" }
-    ],
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
@@ -26,17 +27,21 @@
     },
     "require": {
         "php": ">=5.4.8",
-        "zendframework/zendframework": "~2.3-dev",
-        "zfcampus/zf-api-problem": "~1.0-dev",
-        "zfcampus/zf-content-negotiation": "~1.0-dev"
+        "laminas-api-tools/api-tools-api-problem": "~1.0-dev",
+        "laminas-api-tools/api-tools-content-negotiation": "~1.0-dev",
+        "laminas/laminas": "~2.3-dev",
+        "laminas/laminas-zendframework-bridge": "^1.0"
     },
     "autoload": {
         "psr-0": {
-            "ZF\\ContentValidation\\": "src/",
-            "ZFTest\\ContentValidation\\": "test/"
+            "Laminas\\ApiTools\\ContentValidation\\": "src/",
+            "LaminasTest\\ApiTools\\ContentValidation\\": "test/"
         },
         "classmap": [
             "Module.php"
         ]
+    },
+    "replace": {
+        "zfcampus/zf-content-validation": "self.version"
     }
 }

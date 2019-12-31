@@ -1,16 +1,18 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\ContentValidation\InputFilter;
+namespace Laminas\ApiTools\ContentValidation\InputFilter;
 
-use Zend\Filter\FilterPluginManager;
-use Zend\InputFilter\Factory;
-use Zend\ServiceManager\AbstractFactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Validator\ValidatorPluginManager;
+use Laminas\Filter\FilterPluginManager;
+use Laminas\InputFilter\Factory;
+use Laminas\ServiceManager\AbstractFactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\Validator\ValidatorPluginManager;
 
 class InputFilterAbstractServiceFactory implements AbstractFactoryInterface
 {
@@ -45,7 +47,7 @@ class InputFilterAbstractServiceFactory implements AbstractFactoryInterface
      * @param  ServiceLocatorInterface                $services
      * @param  string                                 $cName
      * @param  string                                 $rName
-     * @return \Zend\InputFilter\InputFilterInterface
+     * @return \Laminas\InputFilter\InputFilterInterface
      */
     public function createServiceWithName(ServiceLocatorInterface $services, $cName, $rName)
     {
