@@ -1,12 +1,12 @@
-ZF Content Validation
+Laminas Content Validation
 =====================
 
-[![Build Status](https://travis-ci.org/zfcampus/zf-content-validation.png)](https://travis-ci.org/zfcampus/zf-content-validation)
+[![Build Status](https://travis-ci.org/laminas-api-tools/api-tools-content-validation.png)](https://travis-ci.org/laminas-api-tools/api-tools-content-validation)
 
 Introduction
 ------------
 
-ZF2 Module for automating validation of incoming input.
+Laminas Module for automating validation of incoming input.
 
 Allows the following:
 
@@ -20,14 +20,14 @@ Installation
 Run the following `composer` command:
 
 ```console
-$ composer require "zfcampus/zf-content-validation:~1.0-dev"
+$ composer require "laminas-api-tools/api-tools-content-validation:~1.0-dev"
 ```
 
 Alternately, manually add the following to your `composer.json`, in the `require` section:
 
 ```javascript
 "require": {
-    "zfcampus/zf-content-validation": "~1.0-dev"
+    "laminas-api-tools/api-tools-content-validation": "~1.0-dev"
 }
 ```
 
@@ -41,7 +41,7 @@ return array(
     /* ... */
     'modules' => array(
         /* ... */
-        'ZF\ContentValidation',
+        'Laminas\ApiTools\ContentValidation',
     ),
     /* ... */
 );
@@ -52,12 +52,12 @@ Configuration
 
 ### User Configuration
 
-This module utilizes two user level configuration keys `zf-content-validation` and also
-`input_filter_specs` (named such that this functionality can be moved into ZF2 in the future).
+This module utilizes two user level configuration keys `api-tools-content-validation` and also
+`input_filter_specs` (named such that this functionality can be moved into Laminas in the future).
 
 #### Service Name key
 
-The `zf-content-validation` key is a mapping between controller service names as the key, and the
+The `api-tools-content-validation` key is a mapping between controller service names as the key, and the
 value being an array of mappings that determine which HTTP method to respond to and what input
 filter to map to for the given request.  The keys for the mapping can either be an HTTP method that
 accepts a request body (i.e., `POST`, `PUT`, `PATCH`, or `DELETE`), or it can be the word
@@ -67,7 +67,7 @@ filter is configured for the current HTTP request method.
 Example where there is a default as well as a GET filter:
 
 ```php
-'zf-content-validation' => array(
+'api-tools-content-validation' => array(
     'Application\Controller\HelloWorld' => array(
         'input_filter' => 'Application\Controller\HelloWorld\Validator',
         'POST' => 'Application\Controller\HelloWorld\CreationValidator',
@@ -82,9 +82,9 @@ In the above example, the `Application\Controller\HelloWorld\Validator` service 
 
 `input_filter_spec` is for configuration-driven creation of input filters.  The keys for this array
 will be a unique name, but more often based off the service name it is mapped to under the
-`zf-content-validation` key.  The values will be an input filter configuration array, as is
-described in the ZF2 manual [section on input
-filters](http://zf2.readthedocs.org/en/latest/modules/zend.input-filter.intro.html).
+`api-tools-content-validation` key.  The values will be an input filter configuration array, as is
+described in the Laminas manual [section on input
+filters](http://laminas.readthedocs.org/en/latest/modules/laminas.input-filter.intro.html).
 
 Example:
 
@@ -96,7 +96,7 @@ Example:
             'required' => true,
             'filters' => array(
                 0 => array(
-                    'name' => 'Zend\Filter\StringTrim',
+                    'name' => 'Laminas\Filter\StringTrim',
                     'options' => array(),
                 ),
             ),
@@ -110,49 +110,49 @@ Example:
 
 ### System Configuration
 
-The following configuration is defined by the module in order to function within a ZF2 application.
+The following configuration is defined by the module in order to function within a Laminas application.
 
 ```php
 'input_filters' => array(
     'abstract_factories' => array(
-        'ZF\ContentValidation\InputFilter\InputFilterAbstractServiceFactory',
+        'Laminas\ApiTools\ContentValidation\InputFilter\InputFilterAbstractServiceFactory',
     ),
 ),
 'service_manager' => array(
     'factories' => array(
-        'ZF\ContentValidation\ContentValidationListener' => 'ZF\ContentValidation\ContentValidationListenerFactory',
+        'Laminas\ApiTools\ContentValidation\ContentValidationListener' => 'Laminas\ApiTools\ContentValidation\ContentValidationListenerFactory',
     ),
 ),
 'validators' => array(
     'factories' => array(
-        'ZF\ContentValidation\Validator\DbRecordExists' => 'ZF\ContentValidation\Validator\Db\RecordExistsFactory',
-        'ZF\ContentValidation\Validator\DbNoRecordExists' => 'ZF\ContentValidation\Validator\Db\NoRecordExistsFactory',
+        'Laminas\ApiTools\ContentValidation\Validator\DbRecordExists' => 'Laminas\ApiTools\ContentValidation\Validator\Db\RecordExistsFactory',
+        'Laminas\ApiTools\ContentValidation\Validator\DbNoRecordExists' => 'Laminas\ApiTools\ContentValidation\Validator\Db\NoRecordExistsFactory',
     ),
 ),
 ```
 
-ZF2 Events
+Laminas Events
 ==========
 
 ### Listeners
 
-#### `ZF\ContentValidation\ContentValidationListener`
+#### `Laminas\ApiTools\ContentValidation\ContentValidationListener`
 
 This listener is attached to the `MvcEvent::EVENT_ROUTE` event at priority `-650`.  Its purpose is
-to utilize the `zf-content-validation` configuration in order to determine if the current request's
+to utilize the `api-tools-content-validation` configuration in order to determine if the current request's
 selected controller service name has a configured input filter.  If it does, it will traverse the
 mappings from the configuration file to create the appropriate input filter (from configuration or
-the Zend Framework 2 input filter plugin manager) in order to validate the incoming data.  This
-particular listener utilizes the data from the `zf-content-negotiation` data container in order to
+the Laminas input filter plugin manager) in order to validate the incoming data.  This
+particular listener utilizes the data from the `api-tools-content-negotiation` data container in order to
 get the deserialized content body parameters.
 
-ZF2 Services
+Laminas Services
 ============
 
 ### Service
 
-#### `ZF\ContentValidation\InputFilter\InputFilterAbstractServiceFactory`
+#### `Laminas\ApiTools\ContentValidation\InputFilter\InputFilterAbstractServiceFactory`
 
 This abstract factory is responsible for creating and returning an appropriate input filter given
 a name and the configuration from the top-level key `input_filter_specs`. It is registered with
-`Zend\InputFilter\InputFilterPluginManager`.
+`Laminas\InputFilter\InputFilterPluginManager`.
