@@ -1,10 +1,10 @@
-ZF Content Validation
+Laminas Content Validation
 =====================
 
-[![Build Status](https://travis-ci.org/zfcampus/zf-content-validation.png)](https://travis-ci.org/zfcampus/zf-content-validation)
-[![Coverage Status](https://coveralls.io/repos/zfcampus/zf-content-validation/badge.png?branch=master)](https://coveralls.io/r/zfcampus/zf-content-validation)
+[![Build Status](https://travis-ci.org/laminas-api-tools/api-tools-content-validation.png)](https://travis-ci.org/laminas-api-tools/api-tools-content-validation)
+[![Coverage Status](https://coveralls.io/repos/laminas-api-tools/api-tools-content-validation/badge.png?branch=master)](https://coveralls.io/r/laminas-api-tools/api-tools-content-validation)
 
-Module for automating validation of incoming input within a Zend Framework 2
+Module for automating validation of incoming input within a Laminas
 application.
 
 Allows the following:

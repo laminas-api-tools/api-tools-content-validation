@@ -1,29 +1,31 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\ContentValidation;
+namespace LaminasTest\ApiTools\ContentValidation;
 
+use Laminas\ApiTools\ContentNegotiation\ParameterDataContainer;
+use Laminas\ApiTools\ContentValidation\ContentValidationListener;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\InputFilter\Factory as InputFilterFactory;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\RouteMatch;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Stdlib\Request as StdlibRequest;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Http\Request as HttpRequest;
-use Zend\InputFilter\Factory as InputFilterFactory;
-use Zend\InputFilter\InputFilter;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\Request as StdlibRequest;
-use ZF\ContentNegotiation\ParameterDataContainer;
-use ZF\ContentValidation\ContentValidationListener;
 
 class ContentValidationListenerTest extends TestCase
 {
     public function testAttachesToRouteEventAtLowPriority()
     {
         $listener = new ContentValidationListener();
-        $events = $this->getMock('Zend\EventManager\EventManagerInterface');
+        $events = $this->getMock('Laminas\EventManager\EventManagerInterface');
         $events->expects($this->once())
             ->method('attach')
             ->with(
@@ -131,7 +133,7 @@ class ContentValidationListenerTest extends TestCase
         $event->setRouteMatch($matches);
 
         $response = $listener->onRoute($event);
-        $this->assertInstanceOf('ZF\ApiProblem\ApiProblemResponse', $response);
+        $this->assertInstanceOf('Laminas\ApiTools\ApiProblem\ApiProblemResponse', $response);
         return $response;
     }
 
@@ -160,7 +162,7 @@ class ContentValidationListenerTest extends TestCase
         $event->setRouteMatch($matches);
 
         $response = $listener->onRoute($event);
-        $this->assertInstanceOf('ZF\ApiProblem\ApiProblemResponse', $response);
+        $this->assertInstanceOf('Laminas\ApiTools\ApiProblem\ApiProblemResponse', $response);
         $this->assertEquals(500, $response->getApiProblem()->status);
     }
 
@@ -203,7 +205,7 @@ class ContentValidationListenerTest extends TestCase
         $event   = new MvcEvent();
         $event->setRequest($request);
         $event->setRouteMatch($matches);
-        $event->setParam('ZFContentNegotiationParameterData', $dataParams);
+        $event->setParam('LaminasContentNegotiationParameterData', $dataParams);
 
         $this->assertNull($listener->onRoute($event));
         $this->assertNull($event->getResponse());
@@ -249,10 +251,10 @@ class ContentValidationListenerTest extends TestCase
         $event   = new MvcEvent();
         $event->setRequest($request);
         $event->setRouteMatch($matches);
-        $event->setParam('ZFContentNegotiationParameterData', $dataParams);
+        $event->setParam('LaminasContentNegotiationParameterData', $dataParams);
 
         $response = $listener->onRoute($event);
-        $this->assertInstanceOf('ZF\ApiProblem\ApiProblemResponse', $response);
+        $this->assertInstanceOf('Laminas\ApiTools\ApiProblem\ApiProblemResponse', $response);
         return $response;
     }
 
@@ -317,10 +319,10 @@ class ContentValidationListenerTest extends TestCase
         $event   = new MvcEvent();
         $event->setRequest($request);
         $event->setRouteMatch($matches);
-        $event->setParam('ZFContentNegotiationParameterData', $dataParams);
+        $event->setParam('LaminasContentNegotiationParameterData', $dataParams);
 
         $response = $listener->onRoute($event);
-        $this->assertInstanceOf('ZF\ApiProblem\ApiProblemResponse', $response);
+        $this->assertInstanceOf('Laminas\ApiTools\ApiProblem\ApiProblemResponse', $response);
         return $response;
     }
 
@@ -362,7 +364,7 @@ class ContentValidationListenerTest extends TestCase
         $event   = new MvcEvent();
         $event->setRequest($request);
         $event->setRouteMatch($matches);
-        $event->setParam('ZFContentNegotiationParameterData', $dataParams);
+        $event->setParam('LaminasContentNegotiationParameterData', $dataParams);
 
         $this->assertNull($listener->onRoute($event));
     }
@@ -406,10 +408,10 @@ class ContentValidationListenerTest extends TestCase
         $event   = new MvcEvent();
         $event->setRequest($request);
         $event->setRouteMatch($matches);
-        $event->setParam('ZFContentNegotiationParameterData', $dataParams);
+        $event->setParam('LaminasContentNegotiationParameterData', $dataParams);
 
         $response = $listener->onRoute($event);
-        $this->assertInstanceOf('ZF\ApiProblem\ApiProblemResponse', $response);
+        $this->assertInstanceOf('Laminas\ApiTools\ApiProblem\ApiProblemResponse', $response);
         return $response;
     }
 
@@ -426,12 +428,12 @@ class ContentValidationListenerTest extends TestCase
      */
     public function testInputFilterIsInjectedIntoMvcEvent($event)
     {
-        $inputFilter = $event->getParam('ZF\ContentValidation\InputFilter');
-        $this->assertInstanceOf('Zend\InputFilter\InputFilter', $inputFilter);
+        $inputFilter = $event->getParam('Laminas\ApiTools\ContentValidation\InputFilter');
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilter', $inputFilter);
     }
 
     /**
-     * @group zf-apigility-skeleton-43
+     * @group api-tools-skeleton-43
      */
     public function testPassingOnlyDataNotInInputFilterShouldInvalidateRequest()
     {
@@ -443,7 +445,7 @@ class ContentValidationListenerTest extends TestCase
                 'required' => true,
                 'validators' => array(
                     array(
-                        'name' => 'Zend\Validator\NotEmpty',
+                        'name' => 'Laminas\Validator\NotEmpty',
                         'options' => array('breakchainonfailure' => true),
                     ),
                 ),
@@ -467,10 +469,10 @@ class ContentValidationListenerTest extends TestCase
         $event   = new MvcEvent();
         $event->setRequest($request);
         $event->setRouteMatch($matches);
-        $event->setParam('ZFContentNegotiationParameterData', $dataParams);
+        $event->setParam('LaminasContentNegotiationParameterData', $dataParams);
 
         $response = $listener->onRoute($event);
-        $this->assertInstanceOf('ZF\ApiProblem\ApiProblemResponse', $response);
+        $this->assertInstanceOf('Laminas\ApiTools\ApiProblem\ApiProblemResponse', $response);
         return $response;
     }
 
@@ -596,13 +598,13 @@ class ContentValidationListenerTest extends TestCase
         $event   = new MvcEvent();
         $event->setRequest($request);
         $event->setRouteMatch($matches);
-        $event->setParam('ZFContentNegotiationParameterData', $dataParams);
+        $event->setParam('LaminasContentNegotiationParameterData', $dataParams);
 
         $result = $listener->onRoute($event);
 
         // Ensure input filter discovered is the same one we expect
-        $inputFilter = $event->getParam('ZF\ContentValidation\InputFilter');
-        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $inputFilter);
+        $inputFilter = $event->getParam('Laminas\ApiTools\ContentValidation\InputFilter');
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $inputFilter);
         $this->assertSame($services->get($filterName), $inputFilter);
 
         // Ensure we have a response we expect
@@ -610,7 +612,7 @@ class ContentValidationListenerTest extends TestCase
             $this->assertNull($result);
             $this->assertNull($event->getResponse());
         } else {
-            $this->assertInstanceOf('ZF\ApiProblem\ApiProblemResponse', $result);
+            $this->assertInstanceOf('Laminas\ApiTools\ApiProblem\ApiProblemResponse', $result);
         }
     }
 }
