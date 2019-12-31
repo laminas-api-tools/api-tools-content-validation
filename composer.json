@@ -1,47 +1,21 @@
 {
-    "name": "zfcampus/zf-content-validation",
-    "description": "Zend Framework module providing incoming content validation",
+    "name": "laminas-api-tools/api-tools-content-validation",
+    "description": "Laminas module providing incoming content validation",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf",
-        "zendframework",
+        "laminas",
+        "api-tools",
         "module",
         "validation"
     ],
+    "homepage": "https://api-tools.getlaminas.org",
     "support": {
-        "issues": "https://github.com/zfcampus/zf-content-validation/issues",
-        "source": "https://github.com/zfcampus/zf-content-validation",
-        "rss": "https://github.com/zfcampus/zf-content-validation/releases.atom",
-        "chat": "https://zendframework-slack.herokuapp.com",
-        "forum": "https://discourse.zendframework.com/c/questions/apigility"
-    },
-    "require": {
-        "php": "^5.6 || ^7.0",
-        "zendframework/zend-eventmanager": "^2.6.3 || ^3.0.1",
-        "zendframework/zend-filter": "^2.7.1",
-        "zendframework/zend-http": "^2.5.4",
-        "zendframework/zend-inputfilter": "^2.7.3",
-        "zendframework/zend-mvc": "^2.7.15 || ^3.0.4",
-        "zendframework/zend-servicemanager": "^2.7.6 || ^3.1",
-        "zendframework/zend-stdlib": "^2.7.7 || ^3.0.1",
-        "zendframework/zend-validator": "^2.8.1",
-        "zfcampus/zf-api-problem": "^1.2.1",
-        "zfcampus/zf-content-negotiation": "^1.2.1"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5",
-        "zendframework/zend-coding-standard": "~1.0.0",
-        "zendframework/zend-db": "^2.8.1"
-    },
-    "autoload": {
-        "psr-4": {
-            "ZF\\ContentValidation\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ZFTest\\ContentValidation\\": "test/"
-        }
+        "docs": "https://api-tools.getlaminas.org/documentation",
+        "issues": "https://github.com/laminas-api-tools/api-tools-content-validation/issues",
+        "source": "https://github.com/laminas-api-tools/api-tools-content-validation",
+        "rss": "https://github.com/laminas-api-tools/api-tools-content-validation/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
     "config": {
         "sort-packages": true
@@ -51,8 +25,37 @@
             "dev-master": "1.6.x-dev",
             "dev-develop": "1.7.x-dev"
         },
-        "zf": {
-            "module": "ZF\\ContentValidation"
+        "laminas": {
+            "module": "Laminas\\ApiTools\\ContentValidation"
+        }
+    },
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "laminas-api-tools/api-tools-api-problem": "^1.2.1",
+        "laminas-api-tools/api-tools-content-negotiation": "^1.2.1",
+        "laminas/laminas-eventmanager": "^2.6.3 || ^3.0.1",
+        "laminas/laminas-filter": "^2.7.1",
+        "laminas/laminas-http": "^2.5.4",
+        "laminas/laminas-inputfilter": "^2.7.3",
+        "laminas/laminas-mvc": "^2.7.15 || ^3.0.4",
+        "laminas/laminas-servicemanager": "^2.7.6 || ^3.1",
+        "laminas/laminas-stdlib": "^2.7.7 || ^3.0.1",
+        "laminas/laminas-validator": "^2.8.1",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~1.0.0",
+        "laminas/laminas-db": "^2.8.1",
+        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\ApiTools\\ContentValidation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\ApiTools\\ContentValidation\\": "test/"
         }
     },
     "scripts": {
@@ -64,5 +67,8 @@
         "cs-fix": "phpcbf",
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    },
+    "replace": {
+        "zfcampus/zf-content-validation": "self.version"
     }
 }
