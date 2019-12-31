@@ -1,15 +1,17 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\ContentValidation\Validator\Db;
+namespace LaminasTest\ApiTools\ContentValidation\Validator\Db;
 
-use Zend\Db\Adapter\Adapter;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Validator\Db\NoRecordExists;
-use Zend\Validator\ValidatorPluginManager;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Validator\Db\NoRecordExists;
+use Laminas\Validator\ValidatorPluginManager;
 
 class NoRecordExistsFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,7 +44,7 @@ class NoRecordExistsFactoryTest extends \PHPUnit_Framework_TestCase
         ];
 
         /** @var NoRecordExists $validator */
-        $validator = $this->validators->get('ZF\ContentValidation\Validator\DbNoRecordExists', $options);
+        $validator = $this->validators->get('Laminas\ApiTools\ContentValidation\Validator\DbNoRecordExists', $options);
 
         $this->assertInstanceOf(NoRecordExists::class, $validator);
         $this->assertEquals($this->adapter, $validator->getAdapter());
@@ -58,7 +60,7 @@ class NoRecordExistsFactoryTest extends \PHPUnit_Framework_TestCase
         ];
 
         /** @var NoRecordExists $validator */
-        $validator = $this->validators->get('ZF\ContentValidation\Validator\DbNoRecordExists', $options);
+        $validator = $this->validators->get('Laminas\ApiTools\ContentValidation\Validator\DbNoRecordExists', $options);
 
         $this->assertInstanceOf(NoRecordExists::class, $validator);
         $this->assertEquals(null, $validator->getAdapter());
