@@ -1,13 +1,15 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\ContentValidation;
+namespace Laminas\ApiTools\ContentValidation;
 
-use Zend\InputFilter\InputFilterAbstractServiceFactory;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\InputFilter\InputFilterAbstractServiceFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controller_plugins' => [
@@ -15,6 +17,9 @@ return [
             'getinputfilter' => InputFilter\InputFilterPlugin::class,
             'getInputfilter' => InputFilter\InputFilterPlugin::class,
             'getInputFilter' => InputFilter\InputFilterPlugin::class,
+
+            // Legacy Zend Framework aliases
+            \ZF\ContentValidation\InputFilter\InputFilterPlugin::class => InputFilter\InputFilterPlugin::class,
         ],
         'factories' => [
             InputFilter\InputFilterPlugin::class => InvokableFactory::class,
@@ -28,7 +33,7 @@ return [
          * input filter will be retrieved. The configuration is any valid
          * configuration for an input filter, as shown in the manual:
          *
-         * - https://docs.zendframework.com/zend-inputfilter/intro/
+         * - https://docs.laminas.dev/laminas-inputfilter/intro/
          */
     ],
     'input_filters' => [
@@ -43,11 +48,11 @@ return [
     ],
     'validators' => [
         'factories' => [
-            'ZF\ContentValidation\Validator\DbRecordExists' => Validator\Db\RecordExistsFactory::class,
-            'ZF\ContentValidation\Validator\DbNoRecordExists' => Validator\Db\NoRecordExistsFactory::class,
+            'Laminas\ApiTools\ContentValidation\Validator\DbRecordExists' => Validator\Db\RecordExistsFactory::class,
+            'Laminas\ApiTools\ContentValidation\Validator\DbNoRecordExists' => Validator\Db\NoRecordExistsFactory::class,
         ],
     ],
-    'zf-content-validation' => [
+    'api-tools-content-validation' => [
         'methods_without_bodies' => [],
         /*
          * An array of controller service name => config pairs.
@@ -70,7 +75,7 @@ return [
          * further define application validation behavior:
          *
          * - use_raw_data: if NOT present, raw data is ALWAYS injected into
-         *   the "BodyParams" container (defined by zf-content-negotiation).
+         *   the "BodyParams" container (defined by api-tools-content-negotiation).
          *   If this key is present and a boolean false, then the validated,
          *   filtered data from the input filter will be used instead.
          *

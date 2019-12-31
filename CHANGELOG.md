@@ -50,7 +50,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#106](https://github.com/zfcampus/zf-content-validation/pull/106) adds support for PHP 7.3.
+- [zfcampus/zf-content-validation#106](https://github.com/zfcampus/zf-content-validation/pull/106) adds support for PHP 7.3.
 
 ### Changed
 
@@ -62,7 +62,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#106](https://github.com/zfcampus/zf-content-validation/pull/106) removes support for zend-stdlib v2 releases.
+- [zfcampus/zf-content-validation#106](https://github.com/zfcampus/zf-content-validation/pull/106) removes support for laminas-stdlib v2 releases.
 
 ### Fixed
 
@@ -88,7 +88,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#105](https://github.com/zfcampus/zf-content-validation/pull/105) fixes default behaviour when the configuration flag `remove_empty_data`
+- [zfcampus/zf-content-validation#105](https://github.com/zfcampus/zf-content-validation/pull/105) fixes default behaviour when the configuration flag `remove_empty_data`
   is not set; in that scenario, data will not change as described in the
   documentation. This fixes a BC break introduced in version 1.7.0.
 
@@ -96,7 +96,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#102](https://github.com/zfcampus/zf-content-validation/pull/102) adds the configuration flag `remove_empty_data`. If set and boolean 
+- [zfcampus/zf-content-validation#102](https://github.com/zfcampus/zf-content-validation/pull/102) adds the configuration flag `remove_empty_data`. If set and boolean 
   `true`, it causes removal of empty key/value pairs from filtered input data.
 
 ### Changed
@@ -135,7 +135,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#99](https://github.com/zfcampus/zf-content-validation/pull/99) fixes how the `ContentValidationListener` chooses an input filter
+- [zfcampus/zf-content-validation#99](https://github.com/zfcampus/zf-content-validation/pull/99) fixes how the `ContentValidationListener` chooses an input filter
   on `DELETE` requests. Starting in 1.6.0, it erroneously would fall back to the
   default input filter if no `DELETE` or `DELETE_COLLECTION` input filter was
   found. However, this was a backwards incompatible change from previous
@@ -147,7 +147,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#98](https://github.com/zfcampus/zf-content-validation/pull/98) adds support for specifying controller-specific input filters for
+- [zfcampus/zf-content-validation#98](https://github.com/zfcampus/zf-content-validation/pull/98) adds support for specifying controller-specific input filters for
   `DELETE` requests, using the keys `DELETE` and `DELETE_COLLECTION`. The input
   filter associated with the key will be applied to the request body.
 
@@ -171,7 +171,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#96](https://github.com/zfcampus/zf-content-validation/pull/96) adds the ability to specify different input filters for _collections_ (versus
+- [zfcampus/zf-content-validation#96](https://github.com/zfcampus/zf-content-validation/pull/96) adds the ability to specify different input filters for _collections_ (versus
   entities). These may be indicated using `<METHOD>_COLLECTION` within your resource input filter configuration.
 
 ### Changed
@@ -194,12 +194,12 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#95](https://github.com/zfcampus/zf-content-validation/pull/95) adds support for PHP 7.1 and 7.2.
+- [zfcampus/zf-content-validation#95](https://github.com/zfcampus/zf-content-validation/pull/95) adds support for PHP 7.1 and 7.2.
 
 ### Changed
 
-- [#93](https://github.com/zfcampus/zf-content-validation/pull/93) modifies `ContentValidationListener::onRoute()` to set the event parameter
-  `ZF\ContentValidation\ParameterData` with the data it has aggregated prior to emitting the event
+- [zfcampus/zf-content-validation#93](https://github.com/zfcampus/zf-content-validation/pull/93) modifies `ContentValidationListener::onRoute()` to set the event parameter
+  `Laminas\ApiTools\ContentValidation\ParameterData` with the data it has aggregated prior to emitting the event
   `ContentValidationListener::EVENT_BEFORE_VALIDATE`. It also now pulls that parameter immediately
   prior to validating data, merging its value with the original data aggregated, and using the
   result when validating. This feature allows you to manipulate the data being validated prior
@@ -211,7 +211,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#95](https://github.com/zfcampus/zf-content-validation/pull/95) removes support for HHVM.
+- [zfcampus/zf-content-validation#95](https://github.com/zfcampus/zf-content-validation/pull/95) removes support for HHVM.
 
 ### Fixed
 
@@ -237,7 +237,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#88](https://github.com/zfcampus/zf-content-validation/issues/88) fixes an
+- [zfcampus/zf-content-validation#88](https://github.com/zfcampus/zf-content-validation/issues/88) fixes an
   issue when handling PATCH requests in JSON formats that include a blank field
   name. Prior to the patch, these would raise a 400 error with a stack trace;
   with the fix, we now issue a 400 error with the message 'Unrecognized field
@@ -259,16 +259,16 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#83](https://github.com/zfcampus/zf-content-validation/pull/83) fixes how
+- [zfcampus/zf-content-validation#83](https://github.com/zfcampus/zf-content-validation/pull/83) fixes how
   input filters are processed when performing GET collections to REST endpoints.
   This ability was introduce in 1.3.0, but failed to take into account that
   query string arguments cannot properly represent multiple entities, which led
-  to any input filter for a `ZF\Rest\Resource::fetchAll()` operation to be
+  to any input filter for a `Laminas\ApiTools\Rest\Resource::fetchAll()` operation to be
   invalid. The change introduced treats such input filters such that they
   do not operate as a `CollectionInputFilter`; as such, they should only be used
   to retrieve values that will be used to sort or filter the collection
   returned.
-- [#84](https://github.com/zfcampus/zf-content-validation/pull/84) fixes how
+- [zfcampus/zf-content-validation#84](https://github.com/zfcampus/zf-content-validation/pull/84) fixes how
   unknown fields are pulled from `CollectionInputFilter` instances when
   reporting their presence for Problem Details. Previously, it would report only
   the index of the collection set, and not the values from each; with this
@@ -291,10 +291,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#81](https://github.com/zfcampus/zf-content-validation/pull/81) fixes an
+- [zfcampus/zf-content-validation#81](https://github.com/zfcampus/zf-content-validation/pull/81) fixes an
   issue with how data was being returned from the content validation listener
   when raw data was to be used, and unknown fields allowed. In cases where the
-  data was an indexed array (which happens with zf-apigility-admin when submitting
+  data was an indexed array (which happens with api-tools-admin when submitting
   an input filter to the API), the data and unknown values, which were
   identical, were being merged before return. Since raw data always contains all
   unknown values, we now return before merging.
@@ -315,7 +315,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#78](https://github.com/zfcampus/zf-content-validation/pull/78) updates
+- [zfcampus/zf-content-validation#78](https://github.com/zfcampus/zf-content-validation/pull/78) updates
   `ContentValidationListener::isCollection()` to check strictly for absence of
   an identifier when determining if a collection was requested. Previously, a
   `0` identifier would be incorrectly flagged as a request for a collection,
@@ -338,8 +338,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#76](https://github.com/zfcampus/zf-content-validation/pull/76) Added FactoryInterface
-  for zend-servicemanager 2.x and updated factory key names for dbRecordExists and
+- [zfcampus/zf-content-validation#76](https://github.com/zfcampus/zf-content-validation/pull/76) Added FactoryInterface
+  for laminas-servicemanager 2.x and updated factory key names for dbRecordExists and
   dbNoRecordExists validators.
 
 ## 1.3.1 - 2016-07-19
@@ -358,19 +358,19 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#71](https://github.com/zfcampus/zf-content-validation/pull/71) corrected
+- [zfcampus/zf-content-validation#71](https://github.com/zfcampus/zf-content-validation/pull/71) corrected
   typo in module configuration which was leading to fatal errors (class not found).
 
 ## 1.3.0 - 2016-07-13
 
 ### Added
 
-- [#64](https://github.com/zfcampus/zf-content-validation/pull/64) adds support
+- [zfcampus/zf-content-validation#64](https://github.com/zfcampus/zf-content-validation/pull/64) adds support
   for providing input filters for `GET` requests; these will validate query
   parameters. Configuration is exactly as it is for other HTTP methods.
-- [#66](https://github.com/zfcampus/zf-content-validation/pull/66) and
-  [#67](https://github.com/zfcampus/zf-content-validation/pull/67) add support
-  for v3 releases of Zend Framework components, while retaining backwards
+- [zfcampus/zf-content-validation#66](https://github.com/zfcampus/zf-content-validation/pull/66) and
+  [zfcampus/zf-content-validation#67](https://github.com/zfcampus/zf-content-validation/pull/67) add support
+  for v3 releases of Laminas components, while retaining backwards
   compatibility with v2 releases.
 
 ### Deprecated
@@ -379,12 +379,12 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#67](https://github.com/zfcampus/zf-content-validation/pull/67) removes
+- [zfcampus/zf-content-validation#67](https://github.com/zfcampus/zf-content-validation/pull/67) removes
   support for PHP 5.5.
 
 ### Fixed
 
-- [#65](https://github.com/zfcampus/zf-content-validation/pull/65) adds the
+- [zfcampus/zf-content-validation#65](https://github.com/zfcampus/zf-content-validation/pull/65) adds the
   ability to specify the flags `allows_only_fields_in_filter` and `use_raw_data`
   in combination to ensure that raw data will not contain any keys not defined
   in the input filters. (Previously, `allows_only_fields_in_filter` was ignored
@@ -406,6 +406,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#63](https://github.com/zfcampus/zf-content-validation/pull/63) provides a
+- [zfcampus/zf-content-validation#63](https://github.com/zfcampus/zf-content-validation/pull/63) provides a
   fix to ensure that numeric keys in validation collections are preserved when
   merging file data into the set.

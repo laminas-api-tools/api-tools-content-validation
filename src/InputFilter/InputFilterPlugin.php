@@ -1,14 +1,16 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2013-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\ContentValidation\InputFilter;
+namespace Laminas\ApiTools\ContentValidation\InputFilter;
 
-use Zend\InputFilter\InputFilterInterface;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
-use Zend\Mvc\InjectApplicationEventInterface;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\InjectApplicationEventInterface;
 
 class InputFilterPlugin extends AbstractPlugin
 {
