@@ -1,16 +1,18 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\ContentValidation\InputFilter;
+namespace LaminasTest\ApiTools\ContentValidation\InputFilter;
 
+use Laminas\ApiTools\ContentValidation\InputFilter\InputFilterPlugin;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\Mvc\Controller\AbstractController;
+use Laminas\Mvc\MvcEvent;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\InputFilter\InputFilterInterface;
-use Zend\Mvc\Controller\AbstractController;
-use Zend\Mvc\MvcEvent;
-use ZF\ContentValidation\InputFilter\InputFilterPlugin;
 
 class InputFilterPluginTest extends TestCase
 {
@@ -36,14 +38,14 @@ class InputFilterPluginTest extends TestCase
 
     public function testInvalidTypeInEventInputFilterParamCausesPluginToYieldNull()
     {
-        $this->event->setParam('ZF\ContentValidation\InputFilter', (object) ['foo' => 'bar']);
+        $this->event->setParam('Laminas\ApiTools\ContentValidation\InputFilter', (object) ['foo' => 'bar']);
         $this->assertNull($this->plugin->__invoke());
     }
 
     public function testValidInputFilterInEventIsReturnedByPlugin()
     {
         $inputFilter = $this->getMockBuilder(InputFilterInterface::class)->getMock();
-        $this->event->setParam('ZF\ContentValidation\InputFilter', $inputFilter);
+        $this->event->setParam('Laminas\ApiTools\ContentValidation\InputFilter', $inputFilter);
         $this->assertSame($inputFilter, $this->plugin->__invoke());
     }
 }
