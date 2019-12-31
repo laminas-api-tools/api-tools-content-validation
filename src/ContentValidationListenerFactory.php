@@ -1,14 +1,16 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\ContentValidation;
+namespace Laminas\ApiTools\ContentValidation;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ContentValidationListenerFactory implements FactoryInterface
 {
@@ -23,7 +25,7 @@ class ContentValidationListenerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $config = $container->has('config') ? $container->get('config') : [];
-        $contentValidationConfig = isset($config['zf-content-validation']) ? $config['zf-content-validation'] : [];
+        $contentValidationConfig = isset($config['api-tools-content-validation']) ? $config['api-tools-content-validation'] : [];
         $restServices = $this->getRestServicesFromConfig($config);
 
         return new ContentValidationListener(
@@ -49,7 +51,7 @@ class ContentValidationListenerFactory implements FactoryInterface
     /**
      * Generate the list of REST services for the listener
      *
-     * Looks for zf-rest configuration, and creates a list of controller
+     * Looks for api-tools-rest configuration, and creates a list of controller
      * service / identifier name pairs to pass to the listener.
      *
      * @param array $config
@@ -58,11 +60,11 @@ class ContentValidationListenerFactory implements FactoryInterface
     protected function getRestServicesFromConfig(array $config)
     {
         $restServices = [];
-        if (! isset($config['zf-rest'])) {
+        if (! isset($config['api-tools-rest'])) {
             return $restServices;
         }
 
-        foreach ($config['zf-rest'] as $controllerService => $restConfig) {
+        foreach ($config['api-tools-rest'] as $controllerService => $restConfig) {
             if (! isset($restConfig['route_identifier_name'])) {
                 continue;
             }
