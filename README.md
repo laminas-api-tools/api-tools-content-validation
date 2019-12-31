@@ -1,7 +1,7 @@
-ZF Content Validation
+Laminas Content Validation
 =====================
 
-Module for automating validation of incoming input within a Zend Framework 2
+Module for automating validation of incoming input within a Laminas
 application.
 
 Allows the following:

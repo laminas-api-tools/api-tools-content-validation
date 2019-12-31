@@ -1,7 +1,9 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
 return [
@@ -13,24 +15,24 @@ return [
          * input filter will be retrieved. The configuration is any valid
          * configuration for an input filter, as shown in the manual:
          *
-         * - http://zf2.readthedocs.org/en/latest/modules/zend.input-filter.intro.html
+         * - http://laminas.readthedocs.org/en/latest/modules/laminas.input-filter.intro.html
          */
     ],
     'service_manager' => [
         'abstract_factories' => [
-            'ZF\ContentValidation\InputFilter\InputFilterAbstractServiceFactory',
+            'Laminas\ApiTools\ContentValidation\InputFilter\InputFilterAbstractServiceFactory',
         ],
         'factories' => [
-            'ZF\ContentValidation\ContentValidationListener' => 'ZF\ContentValidation\ContentValidationListenerFactory',
+            'Laminas\ApiTools\ContentValidation\ContentValidationListener' => 'Laminas\ApiTools\ContentValidation\ContentValidationListenerFactory',
         ],
     ],
     'validators' => [
         'factories' => [
-            'ZF\ContentValidation\Validator\DbRecordExists' => 'ZF\ContentValidation\Validator\Db\RecordExistsFactory',
-            'ZF\ContentValidation\Validator\DbNoRecordExists' => 'ZF\ContentValidation\Validator\Db\NoRecordExistsFactory',
+            'Laminas\ApiTools\ContentValidation\Validator\DbRecordExists' => 'Laminas\ApiTools\ContentValidation\Validator\Db\RecordExistsFactory',
+            'Laminas\ApiTools\ContentValidation\Validator\DbNoRecordExists' => 'Laminas\ApiTools\ContentValidation\Validator\Db\NoRecordExistsFactory',
         ],
     ],
-    'zf-content-validation' => [
+    'api-tools-content-validation' => [
         /*
          * An array of controller service name => config pairs.
          *
