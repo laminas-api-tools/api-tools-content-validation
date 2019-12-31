@@ -1,10 +1,10 @@
 <?php
 
-namespace ZFTest\ContentValidation\InputFilter;
+namespace LaminasTest\ApiTools\ContentValidation\InputFilter;
 
+use Laminas\ApiTools\ContentValidation\InputFilter\InputFilterPlugin;
+use Laminas\Mvc\MvcEvent;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Mvc\MvcEvent;
-use ZF\ContentValidation\InputFilter\InputFilterPlugin;
 
 class InputFilterPluginTest extends TestCase
 {
@@ -12,7 +12,7 @@ class InputFilterPluginTest extends TestCase
     {
         $this->event = $event = new MvcEvent();
 
-        $controller = $this->getMock('Zend\Mvc\Controller\AbstractController');
+        $controller = $this->getMock('Laminas\Mvc\Controller\AbstractController');
         $controller->expects($this->any())
             ->method('getEvent')
             ->will($this->returnValue($event));
@@ -28,14 +28,14 @@ class InputFilterPluginTest extends TestCase
 
     public function testInvalidTypeInEventInputFilterParamCausesPluginToYieldNull()
     {
-        $this->event->setParam('ZF\ContentValidation\InputFilter', (object) array('foo' => 'bar'));
+        $this->event->setParam('Laminas\ApiTools\ContentValidation\InputFilter', (object) array('foo' => 'bar'));
         $this->assertNull($this->plugin->__invoke());
     }
 
     public function testValidInputFilterInEventIsReturnedByPlugin()
     {
-        $inputFilter = $this->getMock('Zend\InputFilter\InputFilterInterface');
-        $this->event->setParam('ZF\ContentValidation\InputFilter', $inputFilter);
+        $inputFilter = $this->getMock('Laminas\InputFilter\InputFilterInterface');
+        $this->event->setParam('Laminas\ApiTools\ContentValidation\InputFilter', $inputFilter);
         $this->assertSame($inputFilter, $this->plugin->__invoke());
     }
 }
