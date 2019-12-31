@@ -1,15 +1,17 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\ContentValidation\Validator\Db;
+namespace LaminasTest\ApiTools\ContentValidation\Validator\Db;
 
-use Zend\Db\Adapter\Adapter;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Validator\Db\RecordExists;
-use Zend\Validator\ValidatorPluginManager;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Validator\Db\RecordExists;
+use Laminas\Validator\ValidatorPluginManager;
 
 class RecordExistsFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,7 +44,7 @@ class RecordExistsFactoryTest extends \PHPUnit_Framework_TestCase
         ];
 
         /** @var RecordExists $validator */
-        $validator = $this->validators->get('ZF\ContentValidation\Validator\DbRecordExists', $options);
+        $validator = $this->validators->get('Laminas\ApiTools\ContentValidation\Validator\DbRecordExists', $options);
 
         $this->assertInstanceOf(RecordExists::class, $validator);
         $this->assertEquals($this->adapter, $validator->getAdapter());
@@ -58,7 +60,7 @@ class RecordExistsFactoryTest extends \PHPUnit_Framework_TestCase
         ];
 
         /** @var RecordExists $validator */
-        $validator = $this->validators->get('ZF\ContentValidation\Validator\DbRecordExists', $options);
+        $validator = $this->validators->get('Laminas\ApiTools\ContentValidation\Validator\DbRecordExists', $options);
 
         $this->assertInstanceOf(RecordExists::class, $validator);
         $this->assertEquals(null, $validator->getAdapter());
