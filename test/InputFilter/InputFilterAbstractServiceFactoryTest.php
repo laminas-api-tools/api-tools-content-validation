@@ -1,17 +1,19 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\ContentValidation\InputFilter;
+namespace LaminasTest\ApiTools\ContentValidation\InputFilter;
 
+use Laminas\ApiTools\ContentValidation\InputFilter\InputFilterAbstractServiceFactory;
+use Laminas\Filter\FilterPluginManager;
+use Laminas\InputFilter\InputFilterPluginManager;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Filter\FilterPluginManager;
-use Zend\InputFilter\InputFilterPluginManager;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Validator\ValidatorPluginManager;
-use ZF\ContentValidation\InputFilter\InputFilterAbstractServiceFactory;
 
 class InputFilterAbstractFactoryTest extends TestCase
 {
@@ -62,7 +64,7 @@ class InputFilterAbstractFactoryTest extends TestCase
             ),
         ));
         $filter = $this->factory->createServiceWithName($this->filters, 'filter', 'filter');
-        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $filter);
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $filter);
     }
 
     /**
@@ -76,7 +78,7 @@ class InputFilterAbstractFactoryTest extends TestCase
         $filters->setService('foo', $filter);
 
         $validators = new ValidatorPluginManager();
-        $validator  = $this->getMock('Zend\Validator\ValidatorInterface');
+        $validator  = $this->getMock('Laminas\Validator\ValidatorInterface');
         $validators->setService('foo', $validator);
 
         $this->services->setService('FilterManager', $filters);

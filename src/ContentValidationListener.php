@@ -1,24 +1,26 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\ContentValidation;
+namespace Laminas\ApiTools\ContentValidation;
 
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
-use Zend\Http\Request as HttpRequest;
-use Zend\InputFilter\CollectionInputFilter;
-use Zend\InputFilter\Exception\InvalidArgumentException as InputFilterInvalidArgumentException;
-use Zend\InputFilter\InputFilterInterface;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Stdlib\ArrayUtils;
-use ZF\ApiProblem\ApiProblem;
-use ZF\ApiProblem\ApiProblemResponse;
-use ZF\ContentNegotiation\ParameterDataContainer;
+use Laminas\ApiTools\ApiProblem\ApiProblem;
+use Laminas\ApiTools\ApiProblem\ApiProblemResponse;
+use Laminas\ApiTools\ContentNegotiation\ParameterDataContainer;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\ListenerAggregateInterface;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\InputFilter\CollectionInputFilter;
+use Laminas\InputFilter\Exception\InvalidArgumentException as InputFilterInvalidArgumentException;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\RouteMatch;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\Stdlib\ArrayUtils;
 
 class ContentValidationListener implements ListenerAggregateInterface
 {
@@ -40,7 +42,7 @@ class ContentValidationListener implements ListenerAggregateInterface
     protected $inputFilters = array();
 
     /**
-     * @var \Zend\Stdlib\CallbackHandler[]
+     * @var \Laminas\Stdlib\CallbackHandler[]
      */
     protected $listeners = array();
 
@@ -106,7 +108,7 @@ class ContentValidationListener implements ListenerAggregateInterface
      *
      * If an input filter is associated with the matched controller service,
      * attempt to validate the incoming request, and inject the event with the
-     * input filter, as the "ZF\ContentValidation\InputFilter" parameter.
+     * input filter, as the "Laminas\ApiTools\ContentValidation\InputFilter" parameter.
      *
      * Uses the ContentNegotiation ParameterDataContainer to retrieve parameters
      * to validate, and returns an ApiProblemResponse when validation fails.
@@ -154,12 +156,12 @@ class ContentValidationListener implements ListenerAggregateInterface
             );
         }
 
-        $dataContainer = $e->getParam('ZFContentNegotiationParameterData', false);
+        $dataContainer = $e->getParam('LaminasContentNegotiationParameterData', false);
         if (! $dataContainer instanceof ParameterDataContainer) {
             return new ApiProblemResponse(
                 new ApiProblem(
                     500,
-                    'ZF\\ContentNegotiation module is not initialized; cannot validate request'
+                    'Laminas\\ApiTools\\ContentNegotiation module is not initialized; cannot validate request'
                 )
             );
         }
@@ -182,13 +184,13 @@ class ContentValidationListener implements ListenerAggregateInterface
         if ($isCollection) {
             $inputFilterClass = $request->isPatch()
                 ? __NAMESPACE__ . '\InputFilter\PatchCollectionInputFilter'
-                : 'Zend\InputFilter\CollectionInputFilter';
+                : 'Laminas\InputFilter\CollectionInputFilter';
             $collectionInputFilter = new $inputFilterClass();
             $collectionInputFilter->setInputFilter($inputFilter);
             $inputFilter = $collectionInputFilter;
         }
 
-        $e->setParam('ZF\ContentValidation\InputFilter', $inputFilter);
+        $e->setParam('Laminas\ApiTools\ContentValidation\InputFilter', $inputFilter);
 
         // We cannot create validation groups when validating collections, as
         // the values submitted may vary between each entity in the collection.
