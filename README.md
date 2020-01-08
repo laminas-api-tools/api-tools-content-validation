@@ -1,7 +1,7 @@
 Laminas Content Validation
 =====================
 
-[![Build Status](https://travis-ci.org/laminas-api-tools/api-tools-content-validation.svg?branch=master)](https://travis-ci.org/laminas-api-tools/api-tools-content-validation)
+[![Build Status](https://travis-ci.com/laminas-api-tools/api-tools-content-validation.svg?branch=master)](https://travis-ci.com/laminas-api-tools/api-tools-content-validation)
 [![Coverage Status](https://coveralls.io/repos/github/laminas-api-tools/api-tools-content-validation/badge.svg?branch=master)](https://coveralls.io/github/laminas-api-tools/api-tools-content-validation?branch=master)
 
 Introduction
