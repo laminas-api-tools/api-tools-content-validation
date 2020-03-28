@@ -69,6 +69,6 @@
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
     "replace": {
-        "zfcampus/zf-content-validation": "self.version"
+        "zfcampus/zf-content-validation": "^1.8.0"
     }
 }
