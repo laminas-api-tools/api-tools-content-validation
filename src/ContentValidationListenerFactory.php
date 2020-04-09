@@ -25,7 +25,9 @@ class ContentValidationListenerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $config = $container->has('config') ? $container->get('config') : [];
-        $contentValidationConfig = isset($config['api-tools-content-validation']) ? $config['api-tools-content-validation'] : [];
+        $contentValidationConfig = isset($config['api-tools-content-validation'])
+            ? $config['api-tools-content-validation']
+            : [];
         $restServices = $this->getRestServicesFromConfig($config);
 
         return new ContentValidationListener(
