@@ -1,7 +1,6 @@
 {
     "name": "laminas-api-tools/api-tools-content-validation",
     "description": "Laminas module providing incoming content validation",
-    "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
         "api-tools",
@@ -9,22 +8,7 @@
         "validation"
     ],
     "homepage": "https://api-tools.getlaminas.org",
-    "support": {
-        "docs": "https://api-tools.getlaminas.org/documentation",
-        "issues": "https://github.com/laminas-api-tools/api-tools-content-validation/issues",
-        "source": "https://github.com/laminas-api-tools/api-tools-content-validation",
-        "rss": "https://github.com/laminas-api-tools/api-tools-content-validation/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laminas": {
-            "module": "Laminas\\ApiTools\\ContentValidation"
-        }
-    },
+    "license": "BSD-3-Clause",
     "require": {
         "php": "^5.6 || ^7.0",
         "laminas-api-tools/api-tools-api-problem": "^1.2.1",
@@ -39,10 +23,21 @@
         "laminas/laminas-validator": "^2.8.1",
         "laminas/laminas-zendframework-bridge": "^1.0"
     },
+    "replace": {
+        "zfcampus/zf-content-validation": "^1.8.0"
+    },
     "require-dev": {
         "laminas/laminas-coding-standard": "~1.0.0",
         "laminas/laminas-db": "^2.8.1",
         "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laminas": {
+            "module": "Laminas\\ApiTools\\ContentValidation"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -64,7 +59,12 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zfcampus/zf-content-validation": "^1.8.0"
+    "support": {
+        "issues": "https://github.com/laminas-api-tools/api-tools-content-validation/issues",
+        "forum": "https://discourse.laminas.dev",
+        "chat": "https://laminas.dev/chat",
+        "source": "https://github.com/laminas-api-tools/api-tools-content-validation",
+        "docs": "https://api-tools.getlaminas.org/documentation",
+        "rss": "https://github.com/laminas-api-tools/api-tools-content-validation/releases.atom"
     }
 }
