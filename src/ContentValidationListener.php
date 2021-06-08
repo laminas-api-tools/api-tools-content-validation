@@ -334,6 +334,7 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
      * Add HTTP Method without body content
      *
      * @param string $method
+     * @return void
      */
     public function addMethodWithoutBody($method)
     {
@@ -396,10 +397,9 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
          * Callback for array_filter() to remove null values (array_filter() removes 'false' values)
          *
          * @param mixed $value
-         * @param null  $key
-         * @return bool
+         * @param null|int|string $key
          */
-        $removeNull = function ($value, $key = null) use ($compareTo) {
+        $removeNull = function ($value, $key = null) use ($compareTo): bool {
             // If comparison array is empty, do a straight comparison
             if (empty($compareTo)) {
                 return null !== $value;
