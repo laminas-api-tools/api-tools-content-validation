@@ -83,8 +83,12 @@ class ContentValidationListenerTest extends TestCase
                 ->disableOriginalConstructor()
                 ->getMock();
 
-        $listener->expects($this->at(0))->method('addMethodWithoutBody')->with('LINK');
-        $listener->expects($this->at(1))->method('addMethodWithoutBody')->with('UNLINK');
+        $listener->expects($this->exactly(2))->method('addMethodWithoutBody')->with(
+            $this->logicalOr(
+                $this->equalTo('LINK'),
+                $this->equalTo('UNLINK'),
+            )
+        );
 
         $reflectedClass = new ReflectionClass($className);
         $constructor    = $reflectedClass->getConstructor();
@@ -200,9 +204,12 @@ class ContentValidationListenerTest extends TestCase
 
         $response = $listener->onRoute($event);
         $this->assertInstanceOf(ApiProblemResponse::class, $response);
-        $this->assertNotContains('Value is required and can\'t be empty', $response->getBody());
-        $this->assertContains('The input must contain only digits', $response->getBody());
-        $this->assertContains('The input does not match against pattern \'/^[a-z]+/i\'', $response->getBody());
+        $this->assertStringNotContainsString('Value is required and can\'t be empty', $response->getBody());
+        $this->assertStringContainsString('The input must contain only digits', $response->getBody());
+        $this->assertStringContainsString(
+            'The input does not match against pattern \'/^[a-z]+/i\'',
+            $response->getBody()
+        );
 
         return $response;
     }
@@ -295,9 +302,12 @@ class ContentValidationListenerTest extends TestCase
 
         $response = $listener->onRoute($event);
         $this->assertInstanceOf(ApiProblemResponse::class, $response);
-        $this->assertNotContains('Value is required and can\'t be empty', $response->getBody());
-        $this->assertContains('The input must contain only digits', $response->getBody());
-        $this->assertContains('The input does not match against pattern \'/^[a-z]+/i\'', $response->getBody());
+        $this->assertStringNotContainsString('Value is required and can\'t be empty', $response->getBody());
+        $this->assertStringContainsString('The input must contain only digits', $response->getBody());
+        $this->assertStringContainsString(
+            'The input does not match against pattern \'/^[a-z]+/i\'',
+            $response->getBody()
+        );
 
         return $response;
     }
@@ -406,7 +416,7 @@ class ContentValidationListenerTest extends TestCase
 
         $response = $listener->onRoute($event);
         $this->assertInstanceOf(ApiProblemResponse::class, $response);
-        $this->assertContains('Unrecognized fields: undefined', $response->getBody());
+        $this->assertStringContainsString('Unrecognized fields: undefined', $response->getBody());
     }
 
     public function testReturnsNullIfCollectionRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed()
@@ -513,7 +523,7 @@ class ContentValidationListenerTest extends TestCase
 
         $response = $listener->onRoute($event);
         $this->assertInstanceOf(ApiProblemResponse::class, $response);
-        $this->assertContains('Unrecognized fields: undefined', $response->getBody());
+        $this->assertStringContainsString('Unrecognized fields: undefined', $response->getBody());
     }
 
     public function testReturnsEarlyIfNoRouteMatchesPresent()
@@ -619,11 +629,11 @@ class ContentValidationListenerTest extends TestCase
         $this->assertCount(3, $asArray['validation_messages']);
 
         $this->assertArrayHasKey('bar', $asArray['validation_messages'][0]);
-        $this->assertInternalType('array', $asArray['validation_messages'][0]['bar']);
+        $this->assertIsArray($asArray['validation_messages'][0]['bar']);
         $this->assertArrayHasKey('bar', $asArray['validation_messages'][1]);
-        $this->assertInternalType('array', $asArray['validation_messages'][1]['bar']);
+        $this->assertIsArray($asArray['validation_messages'][1]['bar']);
         $this->assertArrayHasKey('bar', $asArray['validation_messages'][2]);
-        $this->assertInternalType('array', $asArray['validation_messages'][2]['bar']);
+        $this->assertIsArray($asArray['validation_messages'][2]['bar']);
     }
 
     public function testReturnsApiProblemResponseIfContentNegotiationBodyDataIsMissing(): ApiProblemResponse
@@ -787,9 +797,9 @@ class ContentValidationListenerTest extends TestCase
         $this->assertArrayHasKey('validation_messages', $asArray);
         $this->assertCount(2, $asArray['validation_messages']);
         $this->assertArrayHasKey('foo', $asArray['validation_messages']);
-        $this->assertInternalType('array', $asArray['validation_messages']['foo']);
+        $this->assertIsArray($asArray['validation_messages']['foo']);
         $this->assertArrayHasKey('bar', $asArray['validation_messages']);
-        $this->assertInternalType('array', $asArray['validation_messages']['bar']);
+        $this->assertIsArray($asArray['validation_messages']['bar']);
     }
 
     public function testReturnsApiProblemResponseIfParametersAreMissing(): ApiProblemResponse
@@ -1227,6 +1237,7 @@ class ContentValidationListenerTest extends TestCase
     }
 
     /**
+     * @param array $data
      * @group method-specific
      * @dataProvider httpMethodSpecificInputFilters
      */
@@ -1625,7 +1636,10 @@ class ContentValidationListenerTest extends TestCase
 
         $response = $listener->onRoute($event);
         $this->assertInstanceOf(ApiProblemResponse::class, $response);
-        $this->assertContains('Unrecognized fields: [1: unknown, other], [3: key]', $response->getBody());
+        $this->assertStringContainsString(
+            'Unrecognized fields: [1: unknown, other], [3: key]',
+            $response->getBody()
+        );
     }
 
     /**
@@ -1970,7 +1984,7 @@ class ContentValidationListenerTest extends TestCase
         $this->assertInstanceOf(ApiProblemResponse::class, $result);
         $apiProblemData = $result->getApiProblem()->toArray();
         $this->assertEquals(422, $apiProblemData['status']);
-        $this->assertContains('Unrecognized fields', $apiProblemData['detail']);
+        $this->assertStringContainsString('Unrecognized fields', $apiProblemData['detail']);
     }
 
     /**
@@ -2663,6 +2677,7 @@ class ContentValidationListenerTest extends TestCase
      * What we observed is that the data was being duplicated, as the data and the
      * unknown values were identical.
      *
+     * @param array $params
      * @dataProvider indexedFields
      */
     public function testWhenNoFieldsAreDefinedAndValidatorPassesIndexedArrayDataShouldNotBeDuplicated(

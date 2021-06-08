@@ -7,16 +7,19 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\Db\NoRecordExists;
 use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class NoRecordExistsFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var ValidatorPluginManager */
     protected $validators;
 
     /** @var Adapter&ObjectProphecy */
     protected $adapter;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
