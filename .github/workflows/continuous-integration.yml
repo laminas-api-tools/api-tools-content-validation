@@ -31,3 +31,5 @@ jobs:
         uses: laminas/laminas-continuous-integration-action@v1
         with:
           job: ${{ matrix.job }}
+        env:
+          "GITHUB_TOKEN": ${{ secrets.ORGANIZATION_READ_ONLY_TOKEN }}
