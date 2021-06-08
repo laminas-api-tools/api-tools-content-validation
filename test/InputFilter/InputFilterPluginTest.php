@@ -25,18 +25,18 @@ class InputFilterPluginTest extends TestCase
         $this->plugin->setController($controller);
     }
 
-    public function testMissingInputFilterParamInEventCausesPluginToYieldNull()
+    public function testMissingInputFilterParamInEventCausesPluginToYieldNull(): void
     {
         $this->assertNull($this->plugin->__invoke());
     }
 
-    public function testInvalidTypeInEventInputFilterParamCausesPluginToYieldNull()
+    public function testInvalidTypeInEventInputFilterParamCausesPluginToYieldNull(): void
     {
         $this->event->setParam('Laminas\ApiTools\ContentValidation\InputFilter', (object) ['foo' => 'bar']);
         $this->assertNull($this->plugin->__invoke());
     }
 
-    public function testValidInputFilterInEventIsReturnedByPlugin()
+    public function testValidInputFilterInEventIsReturnedByPlugin(): void
     {
         $inputFilter = $this->getMockBuilder(InputFilterInterface::class)->getMock();
         $this->event->setParam('Laminas\ApiTools\ContentValidation\InputFilter', $inputFilter);

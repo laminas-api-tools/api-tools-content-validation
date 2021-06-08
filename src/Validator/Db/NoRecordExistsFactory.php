@@ -55,6 +55,7 @@ class NoRecordExistsFactory implements FactoryInterface
      * Implemented for backwards compatibility.
      *
      * @param array $options
+     * @return void
      */
     public function setCreationOptions(array $options)
     {

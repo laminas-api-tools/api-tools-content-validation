@@ -40,7 +40,7 @@ class ContentValidationListenerTest extends TestCase
         return new $class($params);
     }
 
-    public function testAttachesToRouteEventAtLowPriority()
+    public function testAttachesToRouteEventAtLowPriority(): void
     {
         $listener = new ContentValidationListener();
         $events   = $this->getMockBuilder(EventManagerInterface::class)->getMock();
@@ -54,7 +54,7 @@ class ContentValidationListenerTest extends TestCase
         $listener->attach($events);
     }
 
-    public function testReturnsEarlyIfRequestIsNonHttp()
+    public function testReturnsEarlyIfRequestIsNonHttp(): void
     {
         $listener = new ContentValidationListener();
 
@@ -76,7 +76,7 @@ class ContentValidationListenerTest extends TestCase
         ];
     }
 
-    public function testAddCustomMethods()
+    public function testAddCustomMethods(): void
     {
         $className = ContentValidationListener::class;
         $listener  = $this->getMockBuilder($className)
@@ -103,7 +103,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @dataProvider nonBodyMethods
      */
-    public function testReturnsEarlyIfRequestMethodWillNotContainRequestBody(string $method)
+    public function testReturnsEarlyIfRequestMethodWillNotContainRequestBody(string $method): void
     {
         $listener = new ContentValidationListener();
 
@@ -116,7 +116,7 @@ class ContentValidationListenerTest extends TestCase
         $this->assertNull($event->getResponse());
     }
 
-    public function testReturnsNullIfCollectionRequestWithoutBodyIsValid()
+    public function testReturnsNullIfCollectionRequestWithoutBodyIsValid(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -214,7 +214,7 @@ class ContentValidationListenerTest extends TestCase
         return $response;
     }
 
-    public function testReturnsNullIfEntityRequestWithoutBodyIsValid()
+    public function testReturnsNullIfEntityRequestWithoutBodyIsValid(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -312,7 +312,7 @@ class ContentValidationListenerTest extends TestCase
         return $response;
     }
 
-    public function testReturnsNullIfEntityRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed()
+    public function testReturnsNullIfEntityRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -365,7 +365,8 @@ class ContentValidationListenerTest extends TestCase
         $this->assertNull($event->getResponse());
     }
 
-    public function testReturnsApiProblemResponseIfEntityRequestWithoutBodyIsInvalidAndUnknownFieldsAreDisallowed()
+    // phpcs:ignore Generic.Files.LineLength.TooLong
+    public function testReturnsApiProblemResponseIfEntityRequestWithoutBodyIsInvalidAndUnknownFieldsAreDisallowed(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -419,7 +420,7 @@ class ContentValidationListenerTest extends TestCase
         $this->assertStringContainsString('Unrecognized fields: undefined', $response->getBody());
     }
 
-    public function testReturnsNullIfCollectionRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed()
+    public function testReturnsNullIfCollectionRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -472,7 +473,8 @@ class ContentValidationListenerTest extends TestCase
         $this->assertNull($event->getResponse());
     }
 
-    public function testReturnsApiProblemResponseIfCollectionRequestWithoutBodyIsInvalidAndUnknownFieldsAreDisallowed()
+    // phpcs:ignore Generic.Files.LineLength.TooLong
+    public function testReturnsApiProblemResponseIfCollectionRequestWithoutBodyIsInvalidAndUnknownFieldsAreDisallowed(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -526,7 +528,7 @@ class ContentValidationListenerTest extends TestCase
         $this->assertStringContainsString('Unrecognized fields: undefined', $response->getBody());
     }
 
-    public function testReturnsEarlyIfNoRouteMatchesPresent()
+    public function testReturnsEarlyIfNoRouteMatchesPresent(): void
     {
         $listener = new ContentValidationListener();
 
@@ -539,7 +541,7 @@ class ContentValidationListenerTest extends TestCase
         $this->assertNull($event->getResponse());
     }
 
-    public function testReturnsEarlyIfRouteMatchesDoNotContainControllerService()
+    public function testReturnsEarlyIfRouteMatchesDoNotContainControllerService(): void
     {
         $listener = new ContentValidationListener();
 
@@ -554,7 +556,7 @@ class ContentValidationListenerTest extends TestCase
         $this->assertNull($event->getResponse());
     }
 
-    public function testReturnsEarlyIfControllerServiceIsNotInConfig()
+    public function testReturnsEarlyIfControllerServiceIsNotInConfig(): void
     {
         $listener = new ContentValidationListener();
 
@@ -576,7 +578,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @dataProvider listMethods
      */
-    public function testSeparateCollectionInputFilterValidation(string $method)
+    public function testSeparateCollectionInputFilterValidation(string $method): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -659,12 +661,12 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @depends testReturnsApiProblemResponseIfContentNegotiationBodyDataIsMissing
      */
-    public function testMissingContentNegotiationDataHas500Response(ApiProblemResponse $response)
+    public function testMissingContentNegotiationDataHas500Response(ApiProblemResponse $response): void
     {
         $this->assertEquals(500, $response->getApiProblem()->status);
     }
 
-    public function testReturnsApiProblemResponseIfInputFilterServiceIsInvalid()
+    public function testReturnsApiProblemResponseIfInputFilterServiceIsInvalid(): void
     {
         $services = new ServiceManager();
         $listener = new ContentValidationListener([
@@ -781,7 +783,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @depends testReturnsApiProblemResponseIfContentIsInvalid
      */
-    public function testApiProblemResponseFromInvalidContentHas422Status(ApiProblemResponse $response)
+    public function testApiProblemResponseFromInvalidContentHas422Status(ApiProblemResponse $response): void
     {
         $this->assertEquals(422, $response->getApiProblem()->status);
     }
@@ -791,7 +793,7 @@ class ContentValidationListenerTest extends TestCase
      */
     public function testApiProblemResponseFromInvalidContentContainsValidationErrorMessages(
         ApiProblemResponse $response
-    ) {
+    ): void {
         $problem = $response->getApiProblem();
         $asArray = $problem->toArray();
         $this->assertArrayHasKey('validation_messages', $asArray);
@@ -847,7 +849,7 @@ class ContentValidationListenerTest extends TestCase
         return $response;
     }
 
-    public function testAllowsValidationOfPartialSetsForPatchRequests()
+    public function testAllowsValidationOfPartialSetsForPatchRequests(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -895,7 +897,7 @@ class ContentValidationListenerTest extends TestCase
      */
     public function testPatchWithZeroRouteIdDoesNotEmitANoticeAndDoesNotHaveCollectionInputFilterWhenRequestHasABody(
         string $verb
-    ) {
+    ): void {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
         $services->setService(
@@ -946,7 +948,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @dataProvider listMethods
      */
-    public function testPatchWithZeroRouteIdWithNoRequestBodyDoesNotHaveCollectionInputFilter(string $verb)
+    public function testPatchWithZeroRouteIdWithNoRequestBodyDoesNotHaveCollectionInputFilter(string $verb): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1035,7 +1037,7 @@ class ContentValidationListenerTest extends TestCase
         return $response;
     }
 
-    public function testFailsValidationOfPartialSetsForPatchRequestsThatIncludeBlankFieldNames()
+    public function testFailsValidationOfPartialSetsForPatchRequestsThatIncludeBlankFieldNames(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1076,7 +1078,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @depends testFailsValidationOfPartialSetsForPatchRequestsThatIncludeUnknownInputs
      */
-    public function testInvalidValidationGroupIs400Response(ApiProblemResponse $response)
+    public function testInvalidValidationGroupIs400Response(ApiProblemResponse $response): void
     {
         $this->assertEquals(400, $response->getApiProblem()->status);
     }
@@ -1084,7 +1086,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @depends testReturnsNothingIfContentIsValid
      */
-    public function testInputFilterIsInjectedIntoMvcEvent(MvcEvent $event)
+    public function testInputFilterIsInjectedIntoMvcEvent(MvcEvent $event): void
     {
         $inputFilter = $event->getParam('Laminas\ApiTools\ContentValidation\InputFilter');
         $this->assertInstanceOf(InputFilter::class, $inputFilter);
@@ -1246,7 +1248,7 @@ class ContentValidationListenerTest extends TestCase
         array $data,
         bool $expectedIsValid,
         string $filterName
-    ) {
+    ): void {
         $services = new ServiceManager();
         $this->configureInputFilters($services);
 
@@ -1287,7 +1289,7 @@ class ContentValidationListenerTest extends TestCase
         }
     }
 
-    public function testMergesFilesArrayIntoDataPriorToValidationWhenFilesArrayIsPopulated()
+    public function testMergesFilesArrayIntoDataPriorToValidationWhenFilesArrayIsPopulated(): void
     {
         $validator = $this->getMockBuilder(InputFilterInterface::class)->getMock();
         $services  = new ServiceManager();
@@ -1360,7 +1362,7 @@ class ContentValidationListenerTest extends TestCase
      * @dataProvider listMethods
      * @group 3
      */
-    public function testCanValidateCollections(string $method)
+    public function testCanValidateCollections(string $method): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1416,7 +1418,7 @@ class ContentValidationListenerTest extends TestCase
      * @group 3
      * @dataProvider listMethods
      */
-    public function testReturnsApiProblemResponseForCollectionIfAnyFieldsAreInvalid(string $method)
+    public function testReturnsApiProblemResponseForCollectionIfAnyFieldsAreInvalid(string $method): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1467,7 +1469,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 3
      */
-    public function testValidatesPatchToCollectionWhenFieldMissing()
+    public function testValidatesPatchToCollectionWhenFieldMissing(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1518,7 +1520,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 3
      */
-    public function testCanValidatePostedCollections()
+    public function testCanValidatePostedCollections(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1567,7 +1569,8 @@ class ContentValidationListenerTest extends TestCase
         $this->assertNull($response);
     }
 
-    public function testValidatePostedCollectionsAndAllowedOnlyFieldsFromFilterReturnsApiProblemWithUnrecognizedFields()
+    // phpcs:ignore Generic.Files.LineLength.TooLong
+    public function testValidatePostedCollectionsAndAllowedOnlyFieldsFromFilterReturnsApiProblemWithUnrecognizedFields(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1645,7 +1648,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 3
      */
-    public function testReportsValidationFailureForPostedCollection()
+    public function testReportsValidationFailureForPostedCollection(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1698,7 +1701,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 3
      */
-    public function testValidatesPostedEntityWhenCollectionIsPossibleForService()
+    public function testValidatesPostedEntityWhenCollectionIsPossibleForService(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1750,7 +1753,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 3
      */
-    public function testIndicatesInvalidPostedEntityWhenCollectionIsPossibleForService()
+    public function testIndicatesInvalidPostedEntityWhenCollectionIsPossibleForService(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1803,7 +1806,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 29
      */
-    public function testSaveFilteredDataIntoDataContainer()
+    public function testSaveFilteredDataIntoDataContainer(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1848,7 +1851,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 29
      */
-    public function testShouldSaveFilteredDataWhenRequiredEvenIfInputFilterIsNotUnknownInputsCapable()
+    public function testShouldSaveFilteredDataWhenRequiredEvenIfInputFilterIsNotUnknownInputsCapable(): void
     {
         $services    = new ServiceManager();
         $inputFilter = $this->getMockBuilder(InputFilterInterface::class)->getMock();
@@ -1862,7 +1865,7 @@ class ContentValidationListenerTest extends TestCase
             ->method('getValues')
             ->will($this->returnValue(['foo' => 'abc']));
 
-        $factory = new InputFilterFactory();
+        new InputFilterFactory();
         $services->setService('FooFilter', $inputFilter);
         $listener = new ContentValidationListener([
             'Foo' => [
@@ -1897,7 +1900,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 29
      */
-    public function testSaveRawDataIntoDataContainer()
+    public function testSaveRawDataIntoDataContainer(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1939,7 +1942,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 29
      */
-    public function testTrySaveUnknownData()
+    public function testTrySaveUnknownData(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -1990,7 +1993,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 29
      */
-    public function testUnknownDataMustBeMergedWithFilteredData()
+    public function testUnknownDataMustBeMergedWithFilteredData(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2039,7 +2042,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 65
      */
-    public function testUseRawAndAllowOnlyFieldsInFilterData()
+    public function testUseRawAndAllowOnlyFieldsInFilterData(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2088,7 +2091,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 29
      */
-    public function testSaveUnknownDataWhenEmptyInputFilter()
+    public function testSaveUnknownDataWhenEmptyInputFilter(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2223,7 +2226,7 @@ class ContentValidationListenerTest extends TestCase
      *
      * @group 40 removeEmptyData
      */
-    public function testFilterEmptyEntriesFromDataByOptionWhenDataEmpty()
+    public function testFilterEmptyEntriesFromDataByOptionWhenDataEmpty(): void
     {
         // empty array
         $event = $this->createGroup40Event([]);
@@ -2257,7 +2260,7 @@ class ContentValidationListenerTest extends TestCase
      * @group 40 removeEmptyData
      * @dataProvider booleanProvider
      */
-    public function testFilterEmptyEntriesFromDataByOptionWhenValueBooleanNotInComparison(bool $value)
+    public function testFilterEmptyEntriesFromDataByOptionWhenValueBooleanNotInComparison(bool $value): void
     {
         $event = $this->createGroup40Event([
             'foo' => $value,
@@ -2286,7 +2289,7 @@ class ContentValidationListenerTest extends TestCase
      *
      * @group 40 removeEmptyData
      */
-    public function testFilterEmptyEntriesFromDataByOptionWhenValueNotAnArray()
+    public function testFilterEmptyEntriesFromDataByOptionWhenValueNotAnArray(): void
     {
         $event = $this->createGroup40Event([
             'foo' => ' string ',
@@ -2315,7 +2318,7 @@ class ContentValidationListenerTest extends TestCase
      *
      * @group 40 removeEmptyData
      */
-    public function testFilterEmptyEntriesFromDataByOptionWhenValueEmptyAfterFilter()
+    public function testFilterEmptyEntriesFromDataByOptionWhenValueEmptyAfterFilter(): void
     {
         $event = $this->createGroup40Event([
             'foo' => [
@@ -2344,7 +2347,7 @@ class ContentValidationListenerTest extends TestCase
      *
      * @group 40 removeEmptyData
      */
-    public function testFilterEmptyEntriesFromDataByOptionWithNestedData()
+    public function testFilterEmptyEntriesFromDataByOptionWithNestedData(): void
     {
         $event = $this->createGroup40Event([
             'foo'         => ' abc ',
@@ -2375,7 +2378,7 @@ class ContentValidationListenerTest extends TestCase
      * @dataProvider listMethods
      * @group 19
      */
-    public function testDoesNotAttemptToValidateAnEntityAsACollection(string $method)
+    public function testDoesNotAttemptToValidateAnEntityAsACollection(string $method): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2433,7 +2436,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group 20
      */
-    public function testEmptyPostShouldReturnValidationError()
+    public function testEmptyPostShouldReturnValidationError(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2481,7 +2484,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group event
      */
-    public function testTriggeredEventBeforeValidate()
+    public function testTriggeredEventBeforeValidate(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2539,7 +2542,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group event
      */
-    public function testTriggeredEventBeforeValidateReturnsApiProblemResponseFromApiProblem()
+    public function testTriggeredEventBeforeValidateReturnsApiProblemResponseFromApiProblem(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2600,7 +2603,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @group event
      */
-    public function testTriggeredEventBeforeValidateReturnsApiProblemResponseFromCallback()
+    public function testTriggeredEventBeforeValidateReturnsApiProblemResponseFromCallback(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2682,7 +2685,7 @@ class ContentValidationListenerTest extends TestCase
      */
     public function testWhenNoFieldsAreDefinedAndValidatorPassesIndexedArrayDataShouldNotBeDuplicated(
         array $params
-    ) {
+    ): void {
         $services = new ServiceManager();
         $services->setService('FooFilter', new TestAsset\CustomValidationInputFilter());
         $listener = new ContentValidationListener([
@@ -2715,12 +2718,12 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @depends testReturnsNothingIfContentIsValid
      */
-    public function testEventNameShouldBeResetToOriginalOnCompletionOfListener(MvcEvent $event)
+    public function testEventNameShouldBeResetToOriginalOnCompletionOfListener(MvcEvent $event): void
     {
         $this->assertEquals('route', $event->getName());
     }
 
-    public function testCollectionDeleteRequestWithBody()
+    public function testCollectionDeleteRequestWithBody(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2785,7 +2788,7 @@ class ContentValidationListenerTest extends TestCase
         $this->assertContains('The input does not match against pattern \'/^[a-z]+/i\'', $messages[0]['bar']);
     }
 
-    public function testDeleteRequestWithBody()
+    public function testDeleteRequestWithBody(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2848,7 +2851,7 @@ class ContentValidationListenerTest extends TestCase
         $this->assertContains('The input does not match against pattern \'/^[a-z]+/i\'', $messages['bar']);
     }
 
-    public function testReturnsNothingOnDeleteRequestIfContentIsInValidAndValidationSetViaInputFilterKeyword()
+    public function testReturnsNothingOnDeleteRequestIfContentIsInValidAndValidationSetViaInputFilterKeyword(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();
@@ -2897,7 +2900,7 @@ class ContentValidationListenerTest extends TestCase
     /**
      * @see https://github.com/zfcampus/zf-content-validation/issues/104
      */
-    public function testRemoveEmptyDataIsNotSetSoEmptyDataAreNotRemoved()
+    public function testRemoveEmptyDataIsNotSetSoEmptyDataAreNotRemoved(): void
     {
         $services = new ServiceManager();
         $factory  = new InputFilterFactory();

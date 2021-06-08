@@ -36,7 +36,7 @@ class RecordExistsFactoryTest extends TestCase
         $this->validators = new ValidatorPluginManager($serviceManager, $config['validators']);
     }
 
-    public function testCreateValidatorWithAdapter()
+    public function testCreateValidatorWithAdapter(): void
     {
         $options = [
             'adapter' => 'CustomAdapter',
@@ -53,7 +53,7 @@ class RecordExistsFactoryTest extends TestCase
         $this->assertEquals('my_field', $validator->getField());
     }
 
-    public function testCreateValidatorWithoutAdapter()
+    public function testCreateValidatorWithoutAdapter(): void
     {
         $options = [
             'table' => 'my_table',

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
+  <file src="src/ContentValidationListener.php">
+    <DocblockTypeContradiction occurrences="2">
+      <code>! $this-&gt;inputFilterManager</code>
+      <code>$this-&gt;events</code>
+    </DocblockTypeContradiction>
+    <ImplementedReturnTypeMismatch occurrences="1">
+      <code>ContentValidationListener</code>
+    </ImplementedReturnTypeMismatch>
+    <MissingClosureParamType occurrences="2">
+      <code>$key</code>
+      <code>$value</code>
+    </MissingClosureParamType>
+    <MissingClosureReturnType occurrences="1">
+      <code>function ($value, $key = null) use ($compareTo) {</code>
+    </MissingClosureReturnType>
+    <MissingReturnType occurrences="1">
+      <code>addMethodWithoutBody</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="3">
+      <code>$key</code>
+      <code>$method</code>
+      <code>$subData</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="2">
+      <code>$this-&gt;config[$controllerService][$method . '_COLLECTION']</code>
+      <code>$this-&gt;config[$controllerService]['input_filter']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="2">
+      <code>$method</code>
+      <code>$subData</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="4">
+      <code>InputFilterInterface</code>
+      <code>bool</code>
+      <code>null|ApiProblemResponse</code>
+      <code>string|false</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="4">
+      <code>$this-&gt;config[$controllerService][$method . '_COLLECTION']</code>
+      <code>$this-&gt;config[$controllerService][$method]</code>
+      <code>$this-&gt;config[$controllerService]['input_filter']</code>
+      <code>$this-&gt;inputFilters[$inputFilterService]</code>
+    </MixedReturnStatement>
+    <ParamNameMismatch occurrences="1">
+      <code>$events</code>
+    </ParamNameMismatch>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$data</code>
+    </PossiblyInvalidArgument>
+    <PossiblyNullPropertyAssignmentValue occurrences="1">
+      <code>$inputFilterManager</code>
+    </PossiblyNullPropertyAssignmentValue>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$events</code>
+    </PropertyNotSetInConstructor>
+    <UndefinedClass occurrences="1">
+      <code>V2RouteMatch</code>
+    </UndefinedClass>
+    <UndefinedDocblockClass occurrences="1">
+      <code>RouteMatch|V2RouteMatch</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="src/ContentValidationListenerFactory.php">
+    <DeprecatedInterface occurrences="1">
+      <code>ContentValidationListenerFactory</code>
+    </DeprecatedInterface>
+    <MixedArgument occurrences="3">
+      <code>$config</code>
+      <code>$container-&gt;get('InputFilterManager')</code>
+      <code>$contentValidationConfig</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="2">
+      <code>$config['api-tools-content-validation']</code>
+      <code>$restConfig['route_identifier_name']</code>
+    </MixedArrayAccess>
+    <MixedArrayOffset occurrences="1">
+      <code>$restServices[$controllerService]</code>
+    </MixedArrayOffset>
+    <MixedAssignment occurrences="5">
+      <code>$config</code>
+      <code>$contentValidationConfig</code>
+      <code>$controllerService</code>
+      <code>$restConfig</code>
+      <code>$restServices[$controllerService]</code>
+    </MixedAssignment>
+    <ParamNameMismatch occurrences="1">
+      <code>$container</code>
+    </ParamNameMismatch>
+  </file>
+  <file src="src/Module.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
+      <code>attach</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>include __DIR__ . '/../config/module.config.php'</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/Validator/Db/NoRecordExistsFactory.php">
+    <DeprecatedInterface occurrences="1">
+      <code>NoRecordExistsFactory</code>
+    </DeprecatedInterface>
+    <MissingReturnType occurrences="1">
+      <code>setCreationOptions</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="2">
+      <code>$container</code>
+      <code>$options['adapter']</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$container</code>
+    </MixedAssignment>
+    <ParamNameMismatch occurrences="1">
+      <code>$validators</code>
+    </ParamNameMismatch>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getServiceLocator</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/Validator/Db/RecordExistsFactory.php">
+    <DeprecatedInterface occurrences="1">
+      <code>RecordExistsFactory</code>
+    </DeprecatedInterface>
+    <MissingReturnType occurrences="1">
+      <code>setCreationOptions</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="2">
+      <code>$container</code>
+      <code>$options['adapter']</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$container</code>
+    </MixedAssignment>
+    <ParamNameMismatch occurrences="1">
+      <code>$validators</code>
+    </ParamNameMismatch>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getServiceLocator</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/ContentValidationListenerTest.php">
+    <MissingReturnType occurrences="57">
+      <code>testAddCustomMethods</code>
+      <code>testAllowsValidationOfPartialSetsForPatchRequests</code>
+      <code>testApiProblemResponseFromInvalidContentContainsValidationErrorMessages</code>
+      <code>testApiProblemResponseFromInvalidContentHas422Status</code>
+      <code>testAttachesToRouteEventAtLowPriority</code>
+      <code>testCanFetchHttpMethodSpecificInputFilterWhenValidating</code>
+      <code>testCanValidateCollections</code>
+      <code>testCanValidatePostedCollections</code>
+      <code>testCollectionDeleteRequestWithBody</code>
+      <code>testDeleteRequestWithBody</code>
+      <code>testDoesNotAttemptToValidateAnEntityAsACollection</code>
+      <code>testEmptyPostShouldReturnValidationError</code>
+      <code>testEventNameShouldBeResetToOriginalOnCompletionOfListener</code>
+      <code>testFailsValidationOfPartialSetsForPatchRequestsThatIncludeBlankFieldNames</code>
+      <code>testFilterEmptyEntriesFromDataByOptionWhenDataEmpty</code>
+      <code>testFilterEmptyEntriesFromDataByOptionWhenValueBooleanNotInComparison</code>
+      <code>testFilterEmptyEntriesFromDataByOptionWhenValueEmptyAfterFilter</code>
+      <code>testFilterEmptyEntriesFromDataByOptionWhenValueNotAnArray</code>
+      <code>testFilterEmptyEntriesFromDataByOptionWithNestedData</code>
+      <code>testIndicatesInvalidPostedEntityWhenCollectionIsPossibleForService</code>
+      <code>testInputFilterIsInjectedIntoMvcEvent</code>
+      <code>testInvalidValidationGroupIs400Response</code>
+      <code>testMergesFilesArrayIntoDataPriorToValidationWhenFilesArrayIsPopulated</code>
+      <code>testMissingContentNegotiationDataHas500Response</code>
+      <code>testPatchWithZeroRouteIdDoesNotEmitANoticeAndDoesNotHaveCollectionInputFilterWhenRequestHasABody</code>
+      <code>testPatchWithZeroRouteIdWithNoRequestBodyDoesNotHaveCollectionInputFilter</code>
+      <code>testRemoveEmptyDataIsNotSetSoEmptyDataAreNotRemoved</code>
+      <code>testReportsValidationFailureForPostedCollection</code>
+      <code>testReturnsApiProblemResponseForCollectionIfAnyFieldsAreInvalid</code>
+      <code>testReturnsApiProblemResponseIfCollectionRequestWithoutBodyIsInvalidAndUnknownFieldsAreDisallowed</code>
+      <code>testReturnsApiProblemResponseIfEntityRequestWithoutBodyIsInvalidAndUnknownFieldsAreDisallowed</code>
+      <code>testReturnsApiProblemResponseIfInputFilterServiceIsInvalid</code>
+      <code>testReturnsEarlyIfControllerServiceIsNotInConfig</code>
+      <code>testReturnsEarlyIfNoRouteMatchesPresent</code>
+      <code>testReturnsEarlyIfRequestIsNonHttp</code>
+      <code>testReturnsEarlyIfRequestMethodWillNotContainRequestBody</code>
+      <code>testReturnsEarlyIfRouteMatchesDoNotContainControllerService</code>
+      <code>testReturnsNothingOnDeleteRequestIfContentIsInValidAndValidationSetViaInputFilterKeyword</code>
+      <code>testReturnsNullIfCollectionRequestWithoutBodyIsValid</code>
+      <code>testReturnsNullIfCollectionRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed</code>
+      <code>testReturnsNullIfEntityRequestWithoutBodyIsValid</code>
+      <code>testReturnsNullIfEntityRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed</code>
+      <code>testSaveFilteredDataIntoDataContainer</code>
+      <code>testSaveRawDataIntoDataContainer</code>
+      <code>testSaveUnknownDataWhenEmptyInputFilter</code>
+      <code>testSeparateCollectionInputFilterValidation</code>
+      <code>testShouldSaveFilteredDataWhenRequiredEvenIfInputFilterIsNotUnknownInputsCapable</code>
+      <code>testTriggeredEventBeforeValidate</code>
+      <code>testTriggeredEventBeforeValidateReturnsApiProblemResponseFromApiProblem</code>
+      <code>testTriggeredEventBeforeValidateReturnsApiProblemResponseFromCallback</code>
+      <code>testTrySaveUnknownData</code>
+      <code>testUnknownDataMustBeMergedWithFilteredData</code>
+      <code>testUseRawAndAllowOnlyFieldsInFilterData</code>
+      <code>testValidatePostedCollectionsAndAllowedOnlyFieldsFromFilterReturnsApiProblemWithUnrecognizedFields</code>
+      <code>testValidatesPatchToCollectionWhenFieldMissing</code>
+      <code>testValidatesPostedEntityWhenCollectionIsPossibleForService</code>
+      <code>testWhenNoFieldsAreDefinedAndValidatorPassesIndexedArrayDataShouldNotBeDuplicated</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="25">
+      <code>$apiProblemData['detail']</code>
+      <code>$asArray['validation_messages']</code>
+      <code>$asArray['validation_messages']</code>
+      <code>$asArray['validation_messages']</code>
+      <code>$asArray['validation_messages']</code>
+      <code>$asArray['validation_messages'][0]</code>
+      <code>$asArray['validation_messages'][1]</code>
+      <code>$asArray['validation_messages'][2]</code>
+      <code>$messages</code>
+      <code>$messages</code>
+      <code>$messages</code>
+      <code>$messages['bar']</code>
+      <code>$messages['bar']</code>
+      <code>$messages['bar']</code>
+      <code>$messages['foo']</code>
+      <code>$messages['foo']</code>
+      <code>$messages['foo']</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]['bar']</code>
+      <code>$messages[0]['bar']</code>
+      <code>$messages[0]['bar']</code>
+      <code>$messages[0]['foo']</code>
+      <code>$messages[0]['foo']</code>
+      <code>$messages[0]['foo']</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="22">
+      <code>$asArray['validation_messages']['bar']</code>
+      <code>$asArray['validation_messages']['foo']</code>
+      <code>$asArray['validation_messages'][0]</code>
+      <code>$asArray['validation_messages'][0]</code>
+      <code>$asArray['validation_messages'][1]</code>
+      <code>$asArray['validation_messages'][1]</code>
+      <code>$asArray['validation_messages'][2]</code>
+      <code>$asArray['validation_messages'][2]</code>
+      <code>$messages['bar']</code>
+      <code>$messages['bar']</code>
+      <code>$messages['bar']</code>
+      <code>$messages['foo']</code>
+      <code>$messages['foo']</code>
+      <code>$messages['foo']</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]</code>
+      <code>$messages[0]</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="4">
+      <code>$inputFilter</code>
+      <code>$inputFilter</code>
+      <code>$messages</code>
+      <code>$messages</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="5">
+      <code>getBodyParams</code>
+      <code>getBodyParams</code>
+      <code>getBodyParams</code>
+      <code>getBodyParams</code>
+      <code>getBodyParams</code>
+    </MixedMethodCall>
+    <PossiblyInvalidArgument occurrences="50">
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+    </PossiblyInvalidArgument>
+    <PossiblyNullReference occurrences="1">
+      <code>invoke</code>
+    </PossiblyNullReference>
+    <TooManyArguments occurrences="2">
+      <code>any</code>
+      <code>any</code>
+    </TooManyArguments>
+    <UndefinedDocblockClass occurrences="4">
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>V2RouteMatch|RouteMatch</code>
+    </UndefinedDocblockClass>
+    <UnusedVariable occurrences="1">
+      <code>$factory</code>
+    </UnusedVariable>
+  </file>
+  <file src="test/InputFilter/InputFilterPluginTest.php">
+    <MissingReturnType occurrences="3">
+      <code>testInvalidTypeInEventInputFilterParamCausesPluginToYieldNull</code>
+      <code>testMissingInputFilterParamInEventCausesPluginToYieldNull</code>
+      <code>testValidInputFilterInEventIsReturnedByPlugin</code>
+    </MissingReturnType>
+    <MixedMethodCall occurrences="5">
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>setParam</code>
+      <code>setParam</code>
+    </MixedMethodCall>
+    <UndefinedThisPropertyAssignment occurrences="2">
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;plugin</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="5">
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;plugin</code>
+      <code>$this-&gt;plugin</code>
+      <code>$this-&gt;plugin</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+  <file src="test/Validator/Db/NoRecordExistsFactoryTest.php">
+    <InvalidPropertyAssignmentValue occurrences="1">
+      <code>$this-&gt;prophesize(Adapter::class)-&gt;reveal()</code>
+    </InvalidPropertyAssignmentValue>
+    <MissingReturnType occurrences="2">
+      <code>testCreateValidatorWithAdapter</code>
+      <code>testCreateValidatorWithoutAdapter</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="1">
+      <code>$config['validators']</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="1">
+      <code>$config['validators']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="1">
+      <code>$config</code>
+    </MixedAssignment>
+    <UndefinedDocblockClass occurrences="1">
+      <code>Adapter&amp;ObjectProphecy</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="test/Validator/Db/RecordExistsFactoryTest.php">
+    <InvalidPropertyAssignmentValue occurrences="1">
+      <code>$this-&gt;prophesize(Adapter::class)-&gt;reveal()</code>
+    </InvalidPropertyAssignmentValue>
+    <MissingReturnType occurrences="2">
+      <code>testCreateValidatorWithAdapter</code>
+      <code>testCreateValidatorWithoutAdapter</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="1">
+      <code>$config['validators']</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="1">
+      <code>$config['validators']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="1">
+      <code>$config</code>
+    </MixedAssignment>
+  </file>
+</files>
