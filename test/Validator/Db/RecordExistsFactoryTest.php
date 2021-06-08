@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\ApiTools\ContentValidation\Validator\Db;
 
 use Laminas\Db\Adapter\Adapter;
@@ -13,11 +7,14 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\Db\RecordExists;
 use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Prophecy\ObjectProphecy;
 
 class RecordExistsFactoryTest extends TestCase
 {
+    /** @var ValidatorPluginManager */
     protected $validators;
 
+    /** @var Adapter&ObjectProphecy */
     protected $adapter;
 
     protected function setUp()
@@ -40,8 +37,8 @@ class RecordExistsFactoryTest extends TestCase
     {
         $options = [
             'adapter' => 'CustomAdapter',
-            'table' => 'my_table',
-            'field' => 'my_field',
+            'table'   => 'my_table',
+            'field'   => 'my_field',
         ];
 
         /** @var RecordExists $validator */

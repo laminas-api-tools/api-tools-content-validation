@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\ApiTools\ContentValidation\Validator\Db;
 
 use Laminas\Db\Adapter\Adapter;
@@ -16,8 +10,10 @@ use PHPUnit\Framework\TestCase;
 
 class NoRecordExistsFactoryTest extends TestCase
 {
+    /** @var ValidatorPluginManager */
     protected $validators;
 
+    /** @var Adapter&ObjectProphecy */
     protected $adapter;
 
     protected function setUp()
@@ -40,8 +36,8 @@ class NoRecordExistsFactoryTest extends TestCase
     {
         $options = [
             'adapter' => 'CustomAdapter',
-            'table' => 'my_table',
-            'field' => 'my_field',
+            'table'   => 'my_table',
+            'field'   => 'my_field',
         ];
 
         /** @var NoRecordExists $validator */
