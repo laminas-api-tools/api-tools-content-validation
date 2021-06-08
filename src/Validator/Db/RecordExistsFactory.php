@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-content-validation for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-content-validation/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\ApiTools\ContentValidation\Validator\Db;
 
 use Interop\Container\ContainerInterface;
@@ -26,12 +20,11 @@ class RecordExistsFactory implements FactoryInterface
     /**
      * Create and return a RecordExists validator instance.
      *
-     * @param ContainerInterface $container
      * @param string $requestedName
      * @param null|array $options
      * @return RecordExists
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         if (isset($options['adapter'])) {
             return new RecordExists(ArrayUtils::merge(
@@ -48,7 +41,6 @@ class RecordExistsFactory implements FactoryInterface
      *
      * Provided for backwards compatibility; proxies to __invoke().
      *
-     * @param ServiceLocatorInterface $validators
      * @return RecordExists
      */
     public function createService(ServiceLocatorInterface $validators)
