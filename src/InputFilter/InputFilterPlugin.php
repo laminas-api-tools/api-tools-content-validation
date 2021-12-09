@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\ApiTools\ContentValidation\InputFilter;
 
 use Laminas\InputFilter\InputFilterInterface;

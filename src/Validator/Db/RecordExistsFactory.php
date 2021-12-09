@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\ApiTools\ContentValidation\Validator\Db;
 
 use Interop\Container\ContainerInterface;
