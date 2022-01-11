@@ -266,7 +266,8 @@
       <code>getBodyParams</code>
       <code>getBodyParams</code>
     </MixedMethodCall>
-    <PossiblyInvalidArgument occurrences="50">
+    <PossiblyInvalidArgument occurrences="51">
+      <code>$matches</code>
       <code>$matches</code>
       <code>$matches</code>
       <code>$matches</code>

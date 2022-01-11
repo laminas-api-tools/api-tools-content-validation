@@ -2945,4 +2945,53 @@ class ContentValidationListenerTest extends TestCase
             $dataParams->getBodyParams()
         );
     }
+
+    /**
+     * @dataProvider listMethods
+     */
+    public function testDoNotOverwriteCustomCollectionInputFilter(string $method): void
+    {
+        $services = new ServiceManager();
+
+        $customCollectionInputFilter = new TestAsset\CustomCollectionInputFilter();
+        $customCollectionInputFilter->setInputFilter(
+            [
+                'foo' => [
+                    'name'     => 'foo',
+                    'required' => false,
+                ],
+            ]
+        );
+
+        $services->setService(TestAsset\CustomCollectionInputFilter::class, $customCollectionInputFilter);
+        $listener = new ContentValidationListener(
+            [
+                'Foo' => ["{$method}_COLLECTION" => TestAsset\CustomCollectionInputFilter::class],
+            ],
+            $services,
+            [
+                'Foo' => 'foo_id',
+            ]
+        );
+
+        $request = new HttpRequest();
+        $request->setMethod($method);
+
+        $matches = $this->createRouteMatch(['controller' => 'Foo']);
+
+        $dataParams = new ParameterDataContainer();
+        $dataParams->setBodyParams([['foo' => '']]);
+
+        $event = new MvcEvent();
+        $event->setName('route');
+        $event->setRequest($request);
+        $event->setRouteMatch($matches);
+        $event->setParam('LaminasContentNegotiationParameterData', $dataParams);
+        // if ContentValidationListener overwrites CustomCollectionInputFilter with instance of CollectionInputFilter
+        // it sets CustomCollectionInputFilter to CollectionInputFilter::inputFilter property
+        // as a consequence it throws InvalidArgumentException in CollectionInputFilter::setData()
+        $this->assertNull($listener->onRoute($event));
+        $inputFilter = $event->getParam('Laminas\ApiTools\ContentValidation\InputFilter');
+        $this->assertInstanceOf(TestAsset\CustomCollectionInputFilter::class, $inputFilter);
+    }
 }
