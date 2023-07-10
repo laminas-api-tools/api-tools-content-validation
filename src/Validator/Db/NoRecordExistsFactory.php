@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Laminas\ApiTools\ContentValidation\Validator\Db;
 
-use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Stdlib\ArrayUtils;
 use Laminas\Validator\Db\NoRecordExists;
+use Psr\Container\ContainerInterface;
 
 class NoRecordExistsFactory implements FactoryInterface
 {

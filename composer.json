@@ -37,7 +37,7 @@
         "laminas/laminas-http": "^2.5.4",
         "laminas/laminas-inputfilter": "^2.8",
         "laminas/laminas-mvc": "^2.7.15 || ^3.0.4",
-        "laminas/laminas-servicemanager": "^2.7.6 || ^3.1",
+        "laminas/laminas-servicemanager": "^3.11",
         "laminas/laminas-stdlib": "^3.2.1",
         "laminas/laminas-validator": "^2.8.1",
         "laminas/laminas-zendframework-bridge": "^1.0"
