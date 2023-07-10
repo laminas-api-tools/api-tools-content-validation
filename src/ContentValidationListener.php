@@ -418,7 +418,7 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
             return null !== $value;
         };
 
-        $data       = array_filter($data, $removeNull, ARRAY_FILTER_USE_BOTH);
+        $data = array_filter($data, $removeNull, ARRAY_FILTER_USE_BOTH);
 
         if (empty($data)) {
             return $data;
