@@ -47,10 +47,10 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
     /** @var array */
     protected $config = [];
 
-    /** @var EventManagerInterface */
+    /** @var null|EventManagerInterface */
     protected $events;
 
-    /** @var ServiceLocatorInterface */
+    /** @var null|ServiceLocatorInterface */
     protected $inputFilterManager;
 
     /**
@@ -125,7 +125,7 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
      */
     public function getEventManager()
     {
-        if (! $this->events) {
+        if (null === $this->events) {
             $this->setEventManager(new EventManager());
         }
         return $this->events;
@@ -418,7 +418,7 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
             return null !== $value;
         };
 
-        $data       = array_filter($data, $removeNull, ARRAY_FILTER_USE_BOTH);
+        $data = array_filter($data, $removeNull, ARRAY_FILTER_USE_BOTH);
 
         if (empty($data)) {
             return $data;
@@ -505,7 +505,7 @@ class ContentValidationListener implements ListenerAggregateInterface, EventMana
         }
 
         if (
-            ! $this->inputFilterManager
+            null === $this->inputFilterManager
             || ! $this->inputFilterManager->has($inputFilterService)
         ) {
             return false;

@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
+<files psalm-version="4.30.0@d0bc6e25d89f649e4f36a534f330f8bb4643dd69">
   <file src="src/ContentValidationListener.php">
-    <DocblockTypeContradiction occurrences="2">
-      <code>! $this-&gt;inputFilterManager</code>
-      <code>$this-&gt;events</code>
-    </DocblockTypeContradiction>
     <ImplementedReturnTypeMismatch occurrences="1">
       <code>ContentValidationListener</code>
     </ImplementedReturnTypeMismatch>
+    <InvalidNullableReturnType occurrences="1">
+      <code>EventManagerInterface</code>
+    </InvalidNullableReturnType>
     <MissingClosureParamType occurrences="2">
       <code>$key</code>
       <code>$value</code>
     </MissingClosureParamType>
-    <MissingClosureReturnType occurrences="1">
-      <code>function ($value, $key = null) use ($compareTo) {</code>
-    </MissingClosureReturnType>
-    <MissingReturnType occurrences="1">
-      <code>addMethodWithoutBody</code>
-    </MissingReturnType>
     <MixedArgument occurrences="3">
       <code>$key</code>
       <code>$method</code>
       <code>$subData</code>
     </MixedArgument>
+    <MixedArgumentTypeCoercion occurrences="1">
+      <code>$validationGroup</code>
+    </MixedArgumentTypeCoercion>
     <MixedArrayAccess occurrences="2">
       <code>$this-&gt;config[$controllerService][$method . '_COLLECTION']</code>
       <code>$this-&gt;config[$controllerService]['input_filter']</code>
@@ -43,18 +39,15 @@
       <code>$this-&gt;config[$controllerService]['input_filter']</code>
       <code>$this-&gt;inputFilters[$inputFilterService]</code>
     </MixedReturnStatement>
+    <NullableReturnStatement occurrences="1">
+      <code>$this-&gt;events</code>
+    </NullableReturnStatement>
     <ParamNameMismatch occurrences="1">
       <code>$events</code>
     </ParamNameMismatch>
     <PossiblyInvalidArgument occurrences="1">
       <code>$data</code>
     </PossiblyInvalidArgument>
-    <PossiblyNullPropertyAssignmentValue occurrences="1">
-      <code>$inputFilterManager</code>
-    </PossiblyNullPropertyAssignmentValue>
-    <PropertyNotSetInConstructor occurrences="1">
-      <code>$events</code>
-    </PropertyNotSetInConstructor>
     <UndefinedClass occurrences="1">
       <code>V2RouteMatch</code>
     </UndefinedClass>
@@ -104,9 +97,6 @@
     <DeprecatedInterface occurrences="1">
       <code>NoRecordExistsFactory</code>
     </DeprecatedInterface>
-    <MissingReturnType occurrences="1">
-      <code>setCreationOptions</code>
-    </MissingReturnType>
     <MixedArgument occurrences="2">
       <code>$container</code>
       <code>$options['adapter']</code>
@@ -125,9 +115,6 @@
     <DeprecatedInterface occurrences="1">
       <code>RecordExistsFactory</code>
     </DeprecatedInterface>
-    <MissingReturnType occurrences="1">
-      <code>setCreationOptions</code>
-    </MissingReturnType>
     <MixedArgument occurrences="2">
       <code>$container</code>
       <code>$options['adapter']</code>
@@ -143,65 +130,10 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/ContentValidationListenerTest.php">
-    <MissingReturnType occurrences="57">
-      <code>testAddCustomMethods</code>
-      <code>testAllowsValidationOfPartialSetsForPatchRequests</code>
-      <code>testApiProblemResponseFromInvalidContentContainsValidationErrorMessages</code>
-      <code>testApiProblemResponseFromInvalidContentHas422Status</code>
-      <code>testAttachesToRouteEventAtLowPriority</code>
-      <code>testCanFetchHttpMethodSpecificInputFilterWhenValidating</code>
-      <code>testCanValidateCollections</code>
-      <code>testCanValidatePostedCollections</code>
-      <code>testCollectionDeleteRequestWithBody</code>
-      <code>testDeleteRequestWithBody</code>
-      <code>testDoesNotAttemptToValidateAnEntityAsACollection</code>
-      <code>testEmptyPostShouldReturnValidationError</code>
-      <code>testEventNameShouldBeResetToOriginalOnCompletionOfListener</code>
-      <code>testFailsValidationOfPartialSetsForPatchRequestsThatIncludeBlankFieldNames</code>
-      <code>testFilterEmptyEntriesFromDataByOptionWhenDataEmpty</code>
-      <code>testFilterEmptyEntriesFromDataByOptionWhenValueBooleanNotInComparison</code>
-      <code>testFilterEmptyEntriesFromDataByOptionWhenValueEmptyAfterFilter</code>
-      <code>testFilterEmptyEntriesFromDataByOptionWhenValueNotAnArray</code>
-      <code>testFilterEmptyEntriesFromDataByOptionWithNestedData</code>
-      <code>testIndicatesInvalidPostedEntityWhenCollectionIsPossibleForService</code>
-      <code>testInputFilterIsInjectedIntoMvcEvent</code>
-      <code>testInvalidValidationGroupIs400Response</code>
-      <code>testMergesFilesArrayIntoDataPriorToValidationWhenFilesArrayIsPopulated</code>
-      <code>testMissingContentNegotiationDataHas500Response</code>
-      <code>testPatchWithZeroRouteIdDoesNotEmitANoticeAndDoesNotHaveCollectionInputFilterWhenRequestHasABody</code>
-      <code>testPatchWithZeroRouteIdWithNoRequestBodyDoesNotHaveCollectionInputFilter</code>
-      <code>testRemoveEmptyDataIsNotSetSoEmptyDataAreNotRemoved</code>
-      <code>testReportsValidationFailureForPostedCollection</code>
-      <code>testReturnsApiProblemResponseForCollectionIfAnyFieldsAreInvalid</code>
-      <code>testReturnsApiProblemResponseIfCollectionRequestWithoutBodyIsInvalidAndUnknownFieldsAreDisallowed</code>
-      <code>testReturnsApiProblemResponseIfEntityRequestWithoutBodyIsInvalidAndUnknownFieldsAreDisallowed</code>
-      <code>testReturnsApiProblemResponseIfInputFilterServiceIsInvalid</code>
-      <code>testReturnsEarlyIfControllerServiceIsNotInConfig</code>
-      <code>testReturnsEarlyIfNoRouteMatchesPresent</code>
-      <code>testReturnsEarlyIfRequestIsNonHttp</code>
-      <code>testReturnsEarlyIfRequestMethodWillNotContainRequestBody</code>
-      <code>testReturnsEarlyIfRouteMatchesDoNotContainControllerService</code>
-      <code>testReturnsNothingOnDeleteRequestIfContentIsInValidAndValidationSetViaInputFilterKeyword</code>
-      <code>testReturnsNullIfCollectionRequestWithoutBodyIsValid</code>
-      <code>testReturnsNullIfCollectionRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed</code>
-      <code>testReturnsNullIfEntityRequestWithoutBodyIsValid</code>
-      <code>testReturnsNullIfEntityRequestWithoutBodyIsValidAndUndefinedFieldsAreAllowed</code>
-      <code>testSaveFilteredDataIntoDataContainer</code>
-      <code>testSaveRawDataIntoDataContainer</code>
-      <code>testSaveUnknownDataWhenEmptyInputFilter</code>
-      <code>testSeparateCollectionInputFilterValidation</code>
-      <code>testShouldSaveFilteredDataWhenRequiredEvenIfInputFilterIsNotUnknownInputsCapable</code>
-      <code>testTriggeredEventBeforeValidate</code>
-      <code>testTriggeredEventBeforeValidateReturnsApiProblemResponseFromApiProblem</code>
-      <code>testTriggeredEventBeforeValidateReturnsApiProblemResponseFromCallback</code>
-      <code>testTrySaveUnknownData</code>
-      <code>testUnknownDataMustBeMergedWithFilteredData</code>
-      <code>testUseRawAndAllowOnlyFieldsInFilterData</code>
-      <code>testValidatePostedCollectionsAndAllowedOnlyFieldsFromFilterReturnsApiProblemWithUnrecognizedFields</code>
-      <code>testValidatesPatchToCollectionWhenFieldMissing</code>
-      <code>testValidatesPostedEntityWhenCollectionIsPossibleForService</code>
-      <code>testWhenNoFieldsAreDefinedAndValidatorPassesIndexedArrayDataShouldNotBeDuplicated</code>
-    </MissingReturnType>
+    <InvalidArgument occurrences="47">
+      <code>[]</code>
+      <code>[]</code>
+    </InvalidArgument>
     <MixedArgument occurrences="25">
       <code>$apiProblemData['detail']</code>
       <code>$asArray['validation_messages']</code>
@@ -332,16 +264,8 @@
       <code>$matches</code>
       <code>V2RouteMatch|RouteMatch</code>
     </UndefinedDocblockClass>
-    <UnusedVariable occurrences="1">
-      <code>$factory</code>
-    </UnusedVariable>
   </file>
   <file src="test/InputFilter/InputFilterPluginTest.php">
-    <MissingReturnType occurrences="3">
-      <code>testInvalidTypeInEventInputFilterParamCausesPluginToYieldNull</code>
-      <code>testMissingInputFilterParamInEventCausesPluginToYieldNull</code>
-      <code>testValidInputFilterInEventIsReturnedByPlugin</code>
-    </MissingReturnType>
     <MixedMethodCall occurrences="5">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -365,10 +289,6 @@
     <InvalidPropertyAssignmentValue occurrences="1">
       <code>$this-&gt;prophesize(Adapter::class)-&gt;reveal()</code>
     </InvalidPropertyAssignmentValue>
-    <MissingReturnType occurrences="2">
-      <code>testCreateValidatorWithAdapter</code>
-      <code>testCreateValidatorWithoutAdapter</code>
-    </MissingReturnType>
     <MixedArgument occurrences="1">
       <code>$config['validators']</code>
     </MixedArgument>
@@ -386,10 +306,6 @@
     <InvalidPropertyAssignmentValue occurrences="1">
       <code>$this-&gt;prophesize(Adapter::class)-&gt;reveal()</code>
     </InvalidPropertyAssignmentValue>
-    <MissingReturnType occurrences="2">
-      <code>testCreateValidatorWithAdapter</code>
-      <code>testCreateValidatorWithoutAdapter</code>
-    </MissingReturnType>
     <MixedArgument occurrences="1">
       <code>$config['validators']</code>
     </MixedArgument>
